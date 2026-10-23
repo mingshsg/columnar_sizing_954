@@ -1,6 +1,6 @@
 # OpenTelemetry compression benchmark: Elasticsearch 9.5.5
 
-Generated: 2026-10-23 07:54:15 UTC
+Generated: 2026-10-23 10:02:36 UTC
 
 ## Cluster
 
@@ -274,6 +274,7 @@ Two documents per signal, taken from the generated files (first line and one lin
 
 - `field_size_report.md`: field-by-field storage comparison, logsdb vs logsdb_columnar
 - `config_report.md`: index templates, settings, effective settings and mappings for every data stream
+- `../README.md`: how the benchmark was built and how to re-run it, with caveats
 
 ## Notes
 

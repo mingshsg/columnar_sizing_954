@@ -121,6 +121,7 @@ def main():
     add("")
     add("- `field_size_report.md`: field-by-field storage comparison, logsdb vs logsdb_columnar")
     add("- `config_report.md`: index templates, settings, effective settings and mappings for every data stream")
+    add("- `../README.md`: how the benchmark was built and how to re-run it, with caveats")
     add("")
 
     add("## Notes")

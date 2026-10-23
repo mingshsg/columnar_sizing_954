@@ -91,12 +91,33 @@ def field_rows(a, b):
     return out
 
 
+def text_rows(a, b):
+    fa, fb = a.get("fields", {}), b.get("fields", {})
+    out = [
+        "| Text field | logsdb (field + `._original`) | columnar (field) | Difference | Columnar vs logsdb |",
+        "|---|---:|---:|---:|---:|",
+    ]
+    for name in ("body.text", "attributes.exception.message", "status.message"):
+        if name not in fa and name not in fb:
+            continue
+        va = field_bytes(fa.get(name, {}), "total") + field_bytes(fa.get(name + "._original", {}), "total")
+        vb = field_bytes(fb.get(name, {}), "total")
+        out.append("| `%s` | %s | %s | %s | %s |" % (name, fmt(va), fmt(vb), fmt(vb - va), pct(vb, va)))
+    return out
+
+
 def main():
     lines = ["# Field-level storage comparison: logsdb vs logsdb_columnar", ""]
     lines.append("Source: Elasticsearch 9.5.5, index disk usage API (`_disk_usage?run_expensive_tasks=true`) on the primary shards after force-merge to one segment per shard.")
     lines.append("Both modes use the same raw data (100 GiB per signal), the same mappings, 2 shards, 0 replicas, default sort (`host.name`, `@timestamp`) and the default `best_compression` codec.")
     lines.append("")
     lines.append("Per-field bytes are the field's share of each on-disk structure. Synthetic `_source` is rebuilt from doc values and stored fields, so the doc values and stored fields columns show what the source costs. Fields that are absent in one mode show as `-` in that column.")
+    lines.append("")
+    lines.append("Internal fields that appear in the per-field table:")
+    lines.append("")
+    lines.append("- `<field>._original` (logsdb only): logsdb keeps the original text of each `match_only_text` field so synthetic `_source` can be rebuilt. Columnar mode stores the same text in doc values instead, so compare the text fields in the table below rather than the `._original` rows alone.")
+    lines.append("- `<field>.counts` (columnar only): per-field value counts stored as separate columns.")
+    lines.append("- `_field_names` (logsdb only): Elasticsearch's field-name metadata.")
     lines.append("")
 
     for signal, ds_a, ds_b in PAIRS:
@@ -109,6 +130,10 @@ def main():
         saving = (1 - b["store_size_in_bytes"] / a["store_size_in_bytes"]) * 100
         lines.append("")
         lines.append("logsdb_columnar uses %.1f%% less disk than logsdb for %s." % (saving, signal))
+        lines.append("")
+        lines.append("### Text fields (`match_only_text`), including their `._original` copy")
+        lines.append("")
+        lines.extend(text_rows(a, b))
         lines.append("")
         lines.append("### Per-field breakdown (sorted by combined size)")
         lines.append("")

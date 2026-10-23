@@ -5,6 +5,12 @@ Both modes use the same raw data (100 GiB per signal), the same mappings, 2 shar
 
 Per-field bytes are the field's share of each on-disk structure. Synthetic `_source` is rebuilt from doc values and stored fields, so the doc values and stored fields columns show what the source costs. Fields that are absent in one mode show as `-` in that column.
 
+Internal fields that appear in the per-field table:
+
+- `<field>._original` (logsdb only): logsdb keeps the original text of each `match_only_text` field so synthetic `_source` can be rebuilt. Columnar mode stores the same text in doc values instead, so compare the text fields in the table below rather than the `._original` rows alone.
+- `<field>.counts` (columnar only): per-field value counts stored as separate columns.
+- `_field_names` (logsdb only): Elasticsearch's field-name metadata.
+
 ## Logs
 
 Index: `logs-otel.logsdb-bench` (logsdb) and `logs-otel.columnar-bench` (logsdb_columnar).
@@ -19,6 +25,13 @@ Index: `logs-otel.logsdb-bench` (logsdb) and `logs-otel.columnar-bench` (logsdb_
 | Points (BKD) | 793.64 MiB | 0 B | -793.64 MiB | -100.0% |
 
 logsdb_columnar uses 33.1% less disk than logsdb for logs.
+
+### Text fields (`match_only_text`), including their `._original` copy
+
+| Text field | logsdb (field + `._original`) | columnar (field) | Difference | Columnar vs logsdb |
+|---|---:|---:|---:|---:|
+| `body.text` | 2852.20 MiB | 2850.58 MiB | -1.62 MiB | -0.1% |
+| `attributes.exception.message` | 110.26 MiB | 110.26 MiB | 3.5 KiB | +0.0% |
 
 ### Per-field breakdown (sorted by combined size)
 
@@ -52,32 +65,32 @@ logsdb_columnar uses 33.1% less disk than logsdb for logs.
 | `_seq_no` | 150.90 MiB | 0 B | -150.90 MiB | -100.0% | 0 B | 0 B | 150.90 MiB | 0 B | 0 B | 0 B |
 | `attributes.exception.type` | 35.07 MiB | 40.58 MiB | 5.50 MiB | +15.7% | 12.35 MiB | 0 B | 22.72 MiB | 40.58 MiB | 0 B | 0 B |
 | `attributes.exception.message._original` | 42.93 MiB | 0 B | -42.93 MiB | -100.0% | 0 B | 0 B | 42.93 MiB | 0 B | 0 B | 0 B |
-| `attributes.url.path.counts` | 0 B | 21.46 MiB | 21.46 MiB | - | 0 B | 0 B | 0 B | 21.46 MiB | 0 B | 0 B |
 | `attributes.http.request.method.counts` | 0 B | 21.46 MiB | 21.46 MiB | - | 0 B | 0 B | 0 B | 21.46 MiB | 0 B | 0 B |
-| `span_id.counts` | 0 B | 20.38 MiB | 20.38 MiB | - | 0 B | 0 B | 0 B | 20.38 MiB | 0 B | 0 B |
+| `attributes.url.path.counts` | 0 B | 21.46 MiB | 21.46 MiB | - | 0 B | 0 B | 0 B | 21.46 MiB | 0 B | 0 B |
 | `trace_id.counts` | 0 B | 20.38 MiB | 20.38 MiB | - | 0 B | 0 B | 0 B | 20.38 MiB | 0 B | 0 B |
+| `span_id.counts` | 0 B | 20.38 MiB | 20.38 MiB | - | 0 B | 0 B | 0 B | 20.38 MiB | 0 B | 0 B |
 | `attributes.app.order.id.counts` | 0 B | 19.37 MiB | 19.37 MiB | - | 0 B | 0 B | 0 B | 19.37 MiB | 0 B | 0 B |
-| `attributes.exception.type.counts` | 0 B | 18.63 MiB | 18.63 MiB | - | 0 B | 0 B | 0 B | 18.63 MiB | 0 B | 0 B |
 | `attributes.exception.message.counts` | 0 B | 18.63 MiB | 18.63 MiB | - | 0 B | 0 B | 0 B | 18.63 MiB | 0 B | 0 B |
+| `attributes.exception.type.counts` | 0 B | 18.63 MiB | 18.63 MiB | - | 0 B | 0 B | 0 B | 18.63 MiB | 0 B | 0 B |
 | `attributes.exception.message._original.counts` | 18.63 MiB | 0 B | -18.63 MiB | -100.0% | 0 B | 0 B | 18.63 MiB | 0 B | 0 B | 0 B |
 | `_field_names` | 16.08 MiB | 0 B | -16.08 MiB | -100.0% | 16.08 MiB | 0 B | 0 B | 0 B | 0 B | 0 B |
-| `resource.attributes.host.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `resource.attributes.deployment.environment.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `resource.attributes.service.version.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `attributes.thread.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `body.text.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `resource.attributes.k8s.namespace.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `resource.attributes.service.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `scope.version.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
-| `resource.attributes.cloud.region.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
 | `severity_text.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `resource.attributes.service.version.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `resource.attributes.deployment.environment.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `resource.attributes.cloud.region.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `body.text.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
 | `scope.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `scope.version.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `attributes.thread.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `resource.attributes.k8s.namespace.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
 | `resource.attributes.k8s.pod.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `resource.attributes.host.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
+| `resource.attributes.service.name.counts` | 0 B | 2.22 MiB | 2.22 MiB | - | 0 B | 0 B | 0 B | 2.22 MiB | 0 B | 0 B |
 | `body.text._original.counts` | 2.22 MiB | 0 B | -2.22 MiB | -100.0% | 0 B | 0 B | 2.22 MiB | 0 B | 0 B | 0 B |
-| `__root_doc_for_nested` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
 | `_version` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
-| `_recovery_source_size` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
 | `_primary_term` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
+| `_recovery_source_size` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
+| `__root_doc_for_nested` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
 | **Total (fields)** | **16157.32 MiB** | **10853.56 MiB** | **-5303.76 MiB** | **-32.8%** | **7060.17 MiB** | **1882.96 MiB** | **7975.88 MiB** | **8970.60 MiB** | | |
 
 ## Traces
@@ -94,6 +107,13 @@ Index: `traces-otel.logsdb-bench` (logsdb) and `traces-otel.columnar-bench` (log
 | Points (BKD) | 649.16 MiB | 0 B | -649.16 MiB | -100.0% |
 
 logsdb_columnar uses 40.4% less disk than logsdb for traces.
+
+### Text fields (`match_only_text`), including their `._original` copy
+
+| Text field | logsdb (field + `._original`) | columnar (field) | Difference | Columnar vs logsdb |
+|---|---:|---:|---:|---:|
+| `attributes.exception.message` | 51.37 MiB | 51.37 MiB | -3.2 KiB | -0.0% |
+| `status.message` | 51.36 MiB | 51.36 MiB | -3.1 KiB | -0.0% |
 
 ### Per-field breakdown (sorted by combined size)
 
@@ -127,35 +147,35 @@ logsdb_columnar uses 40.4% less disk than logsdb for traces.
 | `scope.version` | 7.12 MiB | 55.74 MiB | 48.62 MiB | +683.1% | 7.12 MiB | 0 B | 14 B | 55.74 MiB | 0 B | 0 B |
 | `attributes.exception.type` | 16.99 MiB | 18.42 MiB | 1.43 MiB | +8.4% | 5.87 MiB | 0 B | 11.12 MiB | 18.42 MiB | 0 B | 0 B |
 | `parent_span_id.counts` | 0 B | 21.88 MiB | 21.88 MiB | - | 0 B | 0 B | 0 B | 21.88 MiB | 0 B | 0 B |
-| `attributes.http.request.method.counts` | 0 B | 21.59 MiB | 21.59 MiB | - | 0 B | 0 B | 0 B | 21.59 MiB | 0 B | 0 B |
 | `attributes.http.route.counts` | 0 B | 21.59 MiB | 21.59 MiB | - | 0 B | 0 B | 0 B | 21.59 MiB | 0 B | 0 B |
+| `attributes.http.request.method.counts` | 0 B | 21.59 MiB | 21.59 MiB | - | 0 B | 0 B | 0 B | 21.59 MiB | 0 B | 0 B |
 | `attributes.server.address.counts` | 0 B | 21.59 MiB | 21.59 MiB | - | 0 B | 0 B | 0 B | 21.59 MiB | 0 B | 0 B |
 | `attributes.db.system.counts` | 0 B | 19.85 MiB | 19.85 MiB | - | 0 B | 0 B | 0 B | 19.85 MiB | 0 B | 0 B |
 | `attributes.exception.message._original` | 19.38 MiB | 0 B | -19.38 MiB | -100.0% | 0 B | 0 B | 19.38 MiB | 0 B | 0 B | 0 B |
 | `status.message._original` | 19.38 MiB | 0 B | -19.38 MiB | -100.0% | 0 B | 0 B | 19.38 MiB | 0 B | 0 B | 0 B |
-| `attributes.exception.type.counts` | 0 B | 9.45 MiB | 9.45 MiB | - | 0 B | 0 B | 0 B | 9.45 MiB | 0 B | 0 B |
-| `status.message.counts` | 0 B | 9.45 MiB | 9.45 MiB | - | 0 B | 0 B | 0 B | 9.45 MiB | 0 B | 0 B |
 | `attributes.exception.message.counts` | 0 B | 9.45 MiB | 9.45 MiB | - | 0 B | 0 B | 0 B | 9.45 MiB | 0 B | 0 B |
-| `attributes.exception.message._original.counts` | 9.45 MiB | 0 B | -9.45 MiB | -100.0% | 0 B | 0 B | 9.45 MiB | 0 B | 0 B | 0 B |
+| `status.message.counts` | 0 B | 9.45 MiB | 9.45 MiB | - | 0 B | 0 B | 0 B | 9.45 MiB | 0 B | 0 B |
+| `attributes.exception.type.counts` | 0 B | 9.45 MiB | 9.45 MiB | - | 0 B | 0 B | 0 B | 9.45 MiB | 0 B | 0 B |
 | `status.message._original.counts` | 9.45 MiB | 0 B | -9.45 MiB | -100.0% | 0 B | 0 B | 9.45 MiB | 0 B | 0 B | 0 B |
+| `attributes.exception.message._original.counts` | 9.45 MiB | 0 B | -9.45 MiB | -100.0% | 0 B | 0 B | 9.45 MiB | 0 B | 0 B | 0 B |
 | `_field_names` | 8.68 MiB | 0 B | -8.68 MiB | -100.0% | 8.68 MiB | 0 B | 0 B | 0 B | 0 B | 0 B |
-| `resource.attributes.host.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `resource.attributes.deployment.environment.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `resource.attributes.service.version.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `resource.attributes.k8s.namespace.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `resource.attributes.service.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `span_id.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `scope.version.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `resource.attributes.cloud.region.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `status.code.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `kind.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
 | `trace_id.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `resource.attributes.service.version.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `resource.attributes.deployment.environment.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `resource.attributes.cloud.region.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
 | `scope.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
 | `name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `scope.version.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `kind.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `span_id.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `status.code.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `resource.attributes.k8s.namespace.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
 | `resource.attributes.k8s.pod.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
-| `__root_doc_for_nested` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
+| `resource.attributes.host.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
+| `resource.attributes.service.name.counts` | 0 B | 2.30 MiB | 2.30 MiB | - | 0 B | 0 B | 0 B | 2.30 MiB | 0 B | 0 B |
 | `_version` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
-| `_recovery_source_size` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
 | `_primary_term` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
+| `_recovery_source_size` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
+| `__root_doc_for_nested` | 0 B | 0 B | 0 B | - | 0 B | 0 B | 0 B | 0 B | 0 B | 0 B |
 | **Total (fields)** | **16380.14 MiB** | **9822.34 MiB** | **-6557.80 MiB** | **-40.0%** | **6845.80 MiB** | **546.68 MiB** | **8505.44 MiB** | **9275.65 MiB** | | |
 
