@@ -1,0 +1,197 @@
+2026-10-22T11:48:03Z stage generate: 100 GiB per signal (base logs=1792324083000 traces=1792324083000 metrics=1792151280000)
+{"signal": "logs", "file": "logs.ndjson", "docs": 149147666, "bytes": 107374182528, "target_bytes": 107374182400, "seed": 101, "first_timestamp": "2026-10-18T11:48:03.000Z", "last_timestamp": "2026-10-20T05:13:53.896Z", "generation_seconds": 2811.8, "docs_per_second": 53044.2}
+{"signal": "traces", "file": "traces.ndjson", "docs": 154100082, "bytes": 107374186184, "target_bytes": 107374182400, "seed": 202, "first_timestamp": "2026-10-18T11:48:03.000Z", "last_timestamp": "2026-10-19T09:12:12.376Z", "generation_seconds": 2056.5, "docs_per_second": 74934.3}
+{"signal": "metrics", "file": "metrics.ndjson", "docs": 274280000, "bytes": 107375888603, "target_bytes": 107374182400, "seed": 303, "first_timestamp": "2026-10-16T11:48:00.000Z", "last_timestamp": "2026-10-19T15:59:20.000Z", "generation_seconds": 2592.5, "docs_per_second": 105796.7}
+2026-10-22T12:34:55Z validate logs
+{"signal": "logs", "docs_checked": 149147666, "docs_with_errors": 0, "error_count": 0, "passed": true, "validation_seconds": 375.7}
+2026-10-22T12:41:11Z validate traces
+{"signal": "traces", "docs_checked": 154100082, "docs_with_errors": 0, "error_count": 0, "passed": true, "validation_seconds": 392.4}
+2026-10-22T12:47:43Z validate metrics
+{"signal": "metrics", "docs_checked": 274280000, "docs_with_errors": 0, "error_count": 0, "passed": true, "validation_seconds": 665.5}
+2026-10-22T12:58:49Z setup: templates and data streams (recreated, so loads always start from empty)
+license: trial active
+elasticsearch version: 9.5.5
+template logs-otel.logsdb-bench 200 {"acknowledged":true}
+template logs-otel.columnar-bench 200 {"acknowledged":true}
+template traces-otel.logsdb-bench 200 {"acknowledged":true}
+template traces-otel.columnar-bench 200 {"acknowledged":true}
+template metrics-otel.tsds-bench 200 {"acknowledged":true}
+data stream logs-otel.logsdb-bench 200 {"acknowledged":true}
+data stream logs-otel.columnar-bench 200 {"acknowledged":true}
+data stream traces-otel.logsdb-bench 200 {"acknowledged":true}
+data stream traces-otel.columnar-bench 200 {"acknowledged":true}
+data stream metrics-otel.tsds-bench 200 {"acknowledged":true}
+VERIFY OK   logs-otel.logsdb-bench .ds-logs-otel.logsdb-bench-2026.10.22-000001 {"index.mode": "logsdb", "source.mode": "synthetic", "shards": "2", "replicas": "0"}
+VERIFY OK   logs-otel.columnar-bench .ds-logs-otel.columnar-bench-2026.10.22-000001 {"index.mode": "logsdb_columnar", "source.mode": "synthetic", "shards": "2", "replicas": "0"}
+VERIFY OK   traces-otel.logsdb-bench .ds-traces-otel.logsdb-bench-2026.10.22-000001 {"index.mode": "logsdb", "source.mode": "synthetic", "shards": "2", "replicas": "0"}
+VERIFY OK   traces-otel.columnar-bench .ds-traces-otel.columnar-bench-2026.10.22-000001 {"index.mode": "logsdb_columnar", "source.mode": "synthetic", "shards": "2", "replicas": "0"}
+VERIFY OK   metrics-otel.tsds-bench .ds-metrics-otel.tsds-bench-2026.10.22-000001 {"index.mode": "time_series", "source.mode": "synthetic", "shards": "2", "replicas": "0", "time_series": {"end_time": "2026-10-22T13:07:50.000Z", "start_time": "2026-10-15T12:58:50.000Z"}, "look_back_time": "7d", "routing_path": ["resource.attributes.service.name", "resource.attributes.host.name", "resource.attributes.k8s.pod.name", "resource.attributes.k8s.namespace.name", "resource.attributes.cloud.region", "attributes.stream"]}
+all data streams configured and verified
+2026-10-22T12:58:50Z load logs-otel.logsdb-bench from logs.ndjson
+logs-otel.logsdb-bench docs=5943931 ok=5943931 failed=0 rate=93502 docs/s elapsed=64s
+logs-otel.logsdb-bench docs=11750441 ok=11750441 failed=0 rate=95052 docs/s elapsed=124s
+logs-otel.logsdb-bench docs=17728596 ok=17728596 failed=0 rate=96425 docs/s elapsed=184s
+logs-otel.logsdb-bench docs=23626571 ok=23626571 failed=0 rate=96884 docs/s elapsed=244s
+logs-otel.logsdb-bench docs=29135967 ok=29135967 failed=0 rate=95884 docs/s elapsed=304s
+logs-otel.logsdb-bench docs=33216698 ok=33216698 failed=0 rate=91242 docs/s elapsed=364s
+logs-otel.logsdb-bench docs=37708695 ok=37708695 failed=0 rate=88903 docs/s elapsed=424s
+logs-otel.logsdb-bench docs=43001101 ok=43001101 failed=0 rate=88814 docs/s elapsed=484s
+logs-otel.logsdb-bench docs=49047466 ok=49047466 failed=0 rate=90125 docs/s elapsed=544s
+logs-otel.logsdb-bench docs=55013762 ok=55013762 failed=0 rate=91044 docs/s elapsed=604s
+logs-otel.logsdb-bench docs=60203355 ok=60203355 failed=0 rate=90615 docs/s elapsed=664s
+logs-otel.logsdb-bench docs=64203918 ok=64203918 failed=0 rate=88608 docs/s elapsed=725s
+logs-otel.logsdb-bench docs=68376096 ok=68376096 failed=0 rate=87121 docs/s elapsed=785s
+logs-otel.logsdb-bench docs=72731065 ok=72731065 failed=0 rate=86086 docs/s elapsed=845s
+logs-otel.logsdb-bench docs=77577569 ok=77577569 failed=0 rate=85724 docs/s elapsed=905s
+logs-otel.logsdb-bench docs=82092724 ok=82092724 failed=0 rate=85066 docs/s elapsed=965s
+logs-otel.logsdb-bench docs=86527576 ok=86527576 failed=0 rate=84412 docs/s elapsed=1025s
+logs-otel.logsdb-bench docs=91099717 ok=91099717 failed=0 rate=83956 docs/s elapsed=1085s
+logs-otel.logsdb-bench docs=95694878 ok=95694878 failed=0 rate=83564 docs/s elapsed=1145s
+logs-otel.logsdb-bench docs=101009983 ok=101009983 failed=0 rate=83804 docs/s elapsed=1205s
+logs-otel.logsdb-bench docs=106736723 ok=106736723 failed=0 rate=84353 docs/s elapsed=1265s
+logs-otel.logsdb-bench docs=111697380 ok=111697380 failed=0 rate=84276 docs/s elapsed=1325s
+logs-otel.logsdb-bench docs=116623854 ok=116623854 failed=0 rate=84174 docs/s elapsed=1386s
+logs-otel.logsdb-bench docs=121653531 ok=121653531 failed=0 rate=84152 docs/s elapsed=1446s
+logs-otel.logsdb-bench docs=127083132 ok=127083132 failed=0 rate=84402 docs/s elapsed=1506s
+logs-otel.logsdb-bench docs=132284014 ok=132284014 failed=0 rate=84486 docs/s elapsed=1566s
+logs-otel.logsdb-bench docs=137450426 ok=137450426 failed=0 rate=84543 docs/s elapsed=1626s
+logs-otel.logsdb-bench docs=141919730 ok=141919730 failed=0 rate=84184 docs/s elapsed=1686s
+logs-otel.logsdb-bench docs=147166278 ok=147166278 failed=0 rate=84296 docs/s elapsed=1746s
+{"data_stream": "logs-otel.logsdb-bench", "file": "logs.ndjson", "file_bytes": 107374182528, "docs_sent": 149147666, "docs_indexed": 149147666, "docs_failed": 0, "http_errors": 0, "error_samples": [], "seconds": 1770.4, "docs_per_second": 84246.7, "mb_per_second": 60.65, "completed": true}
+2026-10-22T13:28:20Z load logs-otel.columnar-bench from logs.ndjson
+logs-otel.columnar-bench docs=6595415 ok=6595415 failed=0 rate=109606 docs/s elapsed=60s
+logs-otel.columnar-bench docs=13853658 ok=13853658 failed=0 rate=115196 docs/s elapsed=120s
+logs-otel.columnar-bench docs=21591976 ok=21591976 failed=0 rate=119779 docs/s elapsed=180s
+logs-otel.columnar-bench docs=29616060 ok=29616060 failed=0 rate=123250 docs/s elapsed=240s
+logs-otel.columnar-bench docs=36302732 ok=36302732 failed=0 rate=120817 docs/s elapsed=300s
+logs-otel.columnar-bench docs=42761083 ok=42761083 failed=0 rate=118624 docs/s elapsed=360s
+logs-otel.columnar-bench docs=49321771 ok=49321771 failed=0 rate=117277 docs/s elapsed=421s
+logs-otel.columnar-bench docs=57059848 ok=57059848 failed=0 rate=118720 docs/s elapsed=481s
+logs-otel.columnar-bench docs=63666781 ok=63666781 failed=0 rate=117764 docs/s elapsed=541s
+logs-otel.columnar-bench docs=70147845 ok=70147845 failed=0 rate=116782 docs/s elapsed=601s
+logs-otel.columnar-bench docs=76663266 ok=76663266 failed=0 rate=116015 docs/s elapsed=661s
+logs-otel.columnar-bench docs=83087133 ok=83087133 failed=0 rate=115266 docs/s elapsed=721s
+logs-otel.columnar-bench docs=89648076 ok=89648076 failed=0 rate=114809 docs/s elapsed=781s
+logs-otel.columnar-bench docs=96026319 ok=96026319 failed=0 rate=114195 docs/s elapsed=841s
+logs-otel.columnar-bench docs=102347455 ok=102347455 failed=0 rate=113594 docs/s elapsed=901s
+logs-otel.columnar-bench docs=109045645 ok=109045645 failed=0 rate=113459 docs/s elapsed=961s
+logs-otel.columnar-bench docs=115835214 ok=115835214 failed=0 rate=113439 docs/s elapsed=1021s
+logs-otel.columnar-bench docs=122785217 ok=122785217 failed=0 rate=113568 docs/s elapsed=1081s
+logs-otel.columnar-bench docs=129643626 ok=129643626 failed=0 rate=113607 docs/s elapsed=1141s
+logs-otel.columnar-bench docs=136695950 ok=136695950 failed=0 rate=113792 docs/s elapsed=1201s
+logs-otel.columnar-bench docs=143600005 ok=143600005 failed=0 rate=113851 docs/s elapsed=1261s
+{"data_stream": "logs-otel.columnar-bench", "file": "logs.ndjson", "file_bytes": 107374182528, "docs_sent": 149147666, "docs_indexed": 149147666, "docs_failed": 0, "http_errors": 0, "error_samples": [], "seconds": 1308.9, "docs_per_second": 113947.2, "mb_per_second": 82.03, "completed": true}
+2026-10-22T13:50:09Z load traces-otel.logsdb-bench from traces.ndjson
+traces-otel.logsdb-bench docs=6373212 ok=6373212 failed=0 rate=106022 docs/s elapsed=60s
+traces-otel.logsdb-bench docs=12734594 ok=12734594 failed=0 rate=105941 docs/s elapsed=120s
+traces-otel.logsdb-bench docs=19142971 ok=19142971 failed=0 rate=106213 docs/s elapsed=180s
+traces-otel.logsdb-bench docs=25551596 ok=25551596 failed=0 rate=106339 docs/s elapsed=240s
+traces-otel.logsdb-bench docs=31358765 ok=31358765 failed=0 rate=104417 docs/s elapsed=300s
+traces-otel.logsdb-bench docs=36210037 ok=36210037 failed=0 rate=100476 docs/s elapsed=360s
+traces-otel.logsdb-bench docs=41367522 ok=41367522 failed=0 rate=98354 docs/s elapsed=421s
+traces-otel.logsdb-bench docs=46737579 ok=46737579 failed=0 rate=97225 docs/s elapsed=481s
+traces-otel.logsdb-bench docs=52402679 ok=52402679 failed=0 rate=96874 docs/s elapsed=541s
+traces-otel.logsdb-bench docs=58740696 ok=58740696 failed=0 rate=97734 docs/s elapsed=601s
+traces-otel.logsdb-bench docs=64099123 ok=64099123 failed=0 rate=96969 docs/s elapsed=661s
+traces-otel.logsdb-bench docs=68831871 ok=68831871 failed=0 rate=95456 docs/s elapsed=721s
+traces-otel.logsdb-bench docs=73777043 ok=73777043 failed=0 rate=94434 docs/s elapsed=781s
+traces-otel.logsdb-bench docs=78710459 ok=78710459 failed=0 rate=93557 docs/s elapsed=841s
+traces-otel.logsdb-bench docs=84234314 ok=84234314 failed=0 rate=93452 docs/s elapsed=901s
+traces-otel.logsdb-bench docs=89758373 ok=89758373 failed=0 rate=93358 docs/s elapsed=961s
+traces-otel.logsdb-bench docs=94278530 ok=94278530 failed=0 rate=92295 docs/s elapsed=1021s
+traces-otel.logsdb-bench docs=98255720 ok=98255720 failed=0 rate=90842 docs/s elapsed=1082s
+traces-otel.logsdb-bench docs=102988656 ok=102988656 failed=0 rate=90212 docs/s elapsed=1142s
+traces-otel.logsdb-bench docs=108488396 ok=108488396 failed=0 rate=90276 docs/s elapsed=1202s
+traces-otel.logsdb-bench docs=113551660 ok=113551660 failed=0 rate=89995 docs/s elapsed=1262s
+traces-otel.logsdb-bench docs=118378867 ok=118378867 failed=0 rate=89556 docs/s elapsed=1322s
+traces-otel.logsdb-bench docs=123524628 ok=123524628 failed=0 rate=89390 docs/s elapsed=1382s
+traces-otel.logsdb-bench docs=128870913 ok=128870913 failed=0 rate=89376 docs/s elapsed=1442s
+traces-otel.logsdb-bench docs=134476937 ok=134476937 failed=0 rate=89536 docs/s elapsed=1502s
+traces-otel.logsdb-bench docs=139965218 ok=139965218 failed=0 rate=89608 docs/s elapsed=1562s
+traces-otel.logsdb-bench docs=145476959 ok=145476959 failed=0 rate=89689 docs/s elapsed=1622s
+traces-otel.logsdb-bench docs=151083253 ok=151083253 failed=0 rate=89819 docs/s elapsed=1682s
+{"data_stream": "traces-otel.logsdb-bench", "file": "traces.ndjson", "file_bytes": 107374186184, "docs_sent": 154100082, "docs_indexed": 154100082, "docs_failed": 0, "http_errors": 0, "error_samples": [], "seconds": 1723.2, "docs_per_second": 89429.0, "mb_per_second": 62.31, "completed": true}
+2026-10-22T14:18:53Z load traces-otel.columnar-bench from traces.ndjson
+traces-otel.columnar-bench docs=7506339 ok=7506339 failed=0 rate=124965 docs/s elapsed=60s
+traces-otel.columnar-bench docs=15283634 ok=15283634 failed=0 rate=127241 docs/s elapsed=120s
+traces-otel.columnar-bench docs=23604110 ok=23604110 failed=0 rate=131043 docs/s elapsed=180s
+traces-otel.columnar-bench docs=32255874 ok=32255874 failed=0 rate=134305 docs/s elapsed=240s
+traces-otel.columnar-bench docs=40258028 ok=40258028 failed=0 rate=134071 docs/s elapsed=300s
+traces-otel.columnar-bench docs=48425417 ok=48425417 failed=0 rate=134399 docs/s elapsed=360s
+traces-otel.columnar-bench docs=56203286 ok=56203286 failed=0 rate=133696 docs/s elapsed=420s
+traces-otel.columnar-bench docs=63509041 ok=63509041 failed=0 rate=132180 docs/s elapsed=480s
+traces-otel.columnar-bench docs=71841369 ok=71841369 failed=0 rate=132918 docs/s elapsed=540s
+traces-otel.columnar-bench docs=79796156 ok=79796156 failed=0 rate=132868 docs/s elapsed=601s
+traces-otel.columnar-bench docs=87905168 ok=87905168 failed=0 rate=133048 docs/s elapsed=661s
+traces-otel.columnar-bench docs=96202139 ok=96202139 failed=0 rate=133474 docs/s elapsed=721s
+traces-otel.columnar-bench docs=103838347 ok=103838347 failed=0 rate=132981 docs/s elapsed=781s
+traces-otel.columnar-bench docs=111061242 ok=111061242 failed=0 rate=132071 docs/s elapsed=841s
+traces-otel.columnar-bench docs=117682559 ok=117682559 failed=0 rate=130612 docs/s elapsed=901s
+traces-otel.columnar-bench docs=124386191 ok=124386191 failed=0 rate=129413 docs/s elapsed=961s
+traces-otel.columnar-bench docs=130983445 ok=130983445 failed=0 rate=128267 docs/s elapsed=1021s
+traces-otel.columnar-bench docs=138395488 ok=138395488 failed=0 rate=127994 docs/s elapsed=1081s
+traces-otel.columnar-bench docs=146350490 ok=146350490 failed=0 rate=128230 docs/s elapsed=1141s
+{"data_stream": "traces-otel.columnar-bench", "file": "traces.ndjson", "file_bytes": 107374186184, "docs_sent": 154100082, "docs_indexed": 154100082, "docs_failed": 0, "http_errors": 0, "error_samples": [], "seconds": 1199.5, "docs_per_second": 128468.9, "mb_per_second": 89.51, "completed": true}
+2026-10-22T14:38:52Z load metrics-otel.tsds-bench from metrics.ndjson
+metrics-otel.tsds-bench docs=6400000 ok=6400000 failed=0 rate=106081 docs/s elapsed=60s
+metrics-otel.tsds-bench docs=13020000 ok=13020000 failed=0 rate=107939 docs/s elapsed=121s
+metrics-otel.tsds-bench docs=19820000 ok=19820000 failed=0 rate=109652 docs/s elapsed=181s
+metrics-otel.tsds-bench docs=26680000 ok=26680000 failed=0 rate=110782 docs/s elapsed=241s
+metrics-otel.tsds-bench docs=33260000 ok=33260000 failed=0 rate=110505 docs/s elapsed=301s
+metrics-otel.tsds-bench docs=39680000 ok=39680000 failed=0 rate=109920 docs/s elapsed=361s
+metrics-otel.tsds-bench docs=46480000 ok=46480000 failed=0 rate=110391 docs/s elapsed=421s
+metrics-otel.tsds-bench docs=53260000 ok=53260000 failed=0 rate=110685 docs/s elapsed=481s
+metrics-otel.tsds-bench docs=59720000 ok=59720000 failed=0 rate=110293 docs/s elapsed=541s
+metrics-otel.tsds-bench docs=66020000 ok=66020000 failed=0 rate=109710 docs/s elapsed=602s
+metrics-otel.tsds-bench docs=72660000 ok=72660000 failed=0 rate=109755 docs/s elapsed=662s
+metrics-otel.tsds-bench docs=79700000 ok=79700000 failed=0 rate=110371 docs/s elapsed=722s
+metrics-otel.tsds-bench docs=86680000 ok=86680000 failed=0 rate=110820 docs/s elapsed=782s
+metrics-otel.tsds-bench docs=92820000 ok=92820000 failed=0 rate=110205 docs/s elapsed=842s
+metrics-otel.tsds-bench docs=98780000 ok=98780000 failed=0 rate=109470 docs/s elapsed=902s
+metrics-otel.tsds-bench docs=105260000 ok=105260000 failed=0 rate=109363 docs/s elapsed=962s
+metrics-otel.tsds-bench docs=112120000 ok=112120000 failed=0 rate=109633 docs/s elapsed=1023s
+metrics-otel.tsds-bench docs=118360000 ok=118360000 failed=0 rate=109316 docs/s elapsed=1083s
+metrics-otel.tsds-bench docs=124520000 ok=124520000 failed=0 rate=108961 docs/s elapsed=1143s
+metrics-otel.tsds-bench docs=130620000 ok=130620000 failed=0 rate=108589 docs/s elapsed=1203s
+metrics-otel.tsds-bench docs=136780000 ok=136780000 failed=0 rate=108298 docs/s elapsed=1263s
+metrics-otel.tsds-bench docs=143300000 ok=143300000 failed=0 rate=108297 docs/s elapsed=1323s
+metrics-otel.tsds-bench docs=149140000 ok=149140000 failed=0 rate=107809 docs/s elapsed=1383s
+metrics-otel.tsds-bench docs=155600000 ok=155600000 failed=0 rate=107796 docs/s elapsed=1443s
+metrics-otel.tsds-bench docs=161720000 ok=161720000 failed=0 rate=107556 docs/s elapsed=1504s
+metrics-otel.tsds-bench docs=167840000 ok=167840000 failed=0 rate=107341 docs/s elapsed=1564s
+metrics-otel.tsds-bench docs=174560000 ok=174560000 failed=0 rate=107504 docs/s elapsed=1624s
+metrics-otel.tsds-bench docs=180500000 ok=180500000 failed=0 rate=107193 docs/s elapsed=1684s
+metrics-otel.tsds-bench docs=186940000 ok=186940000 failed=0 rate=107192 docs/s elapsed=1744s
+metrics-otel.tsds-bench docs=192620000 ok=192620000 failed=0 rate=106772 docs/s elapsed=1804s
+metrics-otel.tsds-bench docs=199180000 ok=199180000 failed=0 rate=106847 docs/s elapsed=1864s
+metrics-otel.tsds-bench docs=205600000 ok=205600000 failed=0 rate=106851 docs/s elapsed=1924s
+metrics-otel.tsds-bench docs=211680000 ok=211680000 failed=0 rate=106666 docs/s elapsed=1985s
+metrics-otel.tsds-bench docs=217940000 ok=217940000 failed=0 rate=106579 docs/s elapsed=2045s
+metrics-otel.tsds-bench docs=223480000 ok=223480000 failed=0 rate=106156 docs/s elapsed=2105s
+metrics-otel.tsds-bench docs=229820000 ok=229820000 failed=0 rate=106130 docs/s elapsed=2165s
+metrics-otel.tsds-bench docs=236400000 ok=236400000 failed=0 rate=106222 docs/s elapsed=2226s
+metrics-otel.tsds-bench docs=242640000 ok=242640000 failed=0 rate=106157 docs/s elapsed=2286s
+metrics-otel.tsds-bench docs=248500000 ok=248500000 failed=0 rate=105940 docs/s elapsed=2346s
+metrics-otel.tsds-bench docs=255100000 ok=255100000 failed=0 rate=106039 docs/s elapsed=2406s
+metrics-otel.tsds-bench docs=261440000 ok=261440000 failed=0 rate=106024 docs/s elapsed=2466s
+metrics-otel.tsds-bench docs=268060000 ok=268060000 failed=0 rate=106124 docs/s elapsed=2526s
+{"data_stream": "metrics-otel.tsds-bench", "file": "metrics.ndjson", "file_bytes": 107375888603, "docs_sent": 274280000, "docs_indexed": 274280000, "docs_failed": 0, "http_errors": 0, "error_samples": [], "seconds": 2578.7, "docs_per_second": 106363.9, "mb_per_second": 41.64, "completed": true}
+2026-10-22T15:21:51Z verify
+== logs-otel.logsdb-bench
+2026-10-22T15:35:07Z validate logs: already passed
+2026-10-22T15:35:07Z validate traces: already passed
+2026-10-22T15:35:07Z validate metrics: already passed
+2026-10-22T15:35:07Z verify
+== logs-otel.logsdb-bench
+{"data_stream": "logs-otel.logsdb-bench", "es_doc_count": 149147666, "compression_ratio": 6.306, "bytes_per_doc_on_disk": 114.17, "passed": true}
+== logs-otel.columnar-bench
+{"data_stream": "logs-otel.columnar-bench", "es_doc_count": 149147666, "compression_ratio": 9.42, "bytes_per_doc_on_disk": 76.42, "passed": true}
+== traces-otel.logsdb-bench
+{"data_stream": "traces-otel.logsdb-bench", "es_doc_count": 154100082, "compression_ratio": 6.213, "bytes_per_doc_on_disk": 112.15, "passed": true}
+== traces-otel.columnar-bench
+{"data_stream": "traces-otel.columnar-bench", "es_doc_count": 154100082, "compression_ratio": 10.424, "bytes_per_doc_on_disk": 66.85, "passed": true}
+== metrics-otel.tsds-bench
+{"data_stream": "metrics-otel.tsds-bench", "es_doc_count": 274280000, "compression_ratio": 56.413, "bytes_per_doc_on_disk": 6.94, "passed": true}
+ALL PASSED
+wrote /mnt/nvme/benchmark_956/otel-es-benchmark/results/summary.md
+2026-10-22T16:09:53Z pipeline complete

@@ -1,0 +1,1 @@
+{"signal": "logs", "file": "logs.ndjson", "docs": 149147666, "bytes": 107374182528, "target_bytes": 107374182400, "seed": 101, "first_timestamp": "2026-10-18T11:48:03.000Z", "last_timestamp": "2026-10-20T05:13:53.896Z", "generation_seconds": 2811.8, "docs_per_second": 53044.2}

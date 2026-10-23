@@ -1,0 +1,403 @@
+{
+  "generated_at": "2026-10-22T15:35:07.826017+00:00",
+  "cluster": {
+    "version": "9.5.5",
+    "license": "trial"
+  },
+  "data_streams": [
+    {
+      "data_stream": "logs-otel.logsdb-bench",
+      "kind": "logs",
+      "expected_mode": "logsdb",
+      "raw_file": "logs.ndjson",
+      "raw_bytes": 107374182528,
+      "generated_docs": 149147666,
+      "problems": [],
+      "forcemerge_seconds": 0.0,
+      "forcemerge_status": 200,
+      "settings": {
+        ".ds-logs-otel.logsdb-bench-2026.10.22-000001": {
+          "mode": "logsdb",
+          "source_mode": "synthetic",
+          "shards": "2",
+          "replicas": "0"
+        }
+      },
+      "mapping": {
+        "text_fields": {
+          "body.text": "match_only_text",
+          "attributes.exception.message": "match_only_text"
+        }
+      },
+      "es_doc_count": 149147666,
+      "required_field_coverage": {
+        "@timestamp": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "body.text": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "severity_text": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "severity_number": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "resource.attributes.service.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "resource.attributes.host.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "resource.attributes.k8s.pod.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "scope.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "scope.version": {
+          "docs_with_field": 149147666,
+          "complete": true
+        }
+      },
+      "primary_store_bytes": 17028159116,
+      "compression_ratio": 6.306,
+      "bytes_per_doc_on_disk": 114.17,
+      "raw_bytes_per_doc": 719.92,
+      "text_search_match_hits": 24240221,
+      "round_trip": {
+        "window_start": "2026-10-18T11:48:03.001Z",
+        "window_end": "2026-10-18T11:48:08.001Z",
+        "es_docs_in_window": 5083,
+        "file_docs_in_window": 5083,
+        "docs_identical": true,
+        "missing_in_es": 0,
+        "unexpected_in_es": 0
+      },
+      "passed": true
+    },
+    {
+      "data_stream": "logs-otel.columnar-bench",
+      "kind": "logs",
+      "expected_mode": "logsdb_columnar",
+      "raw_file": "logs.ndjson",
+      "raw_bytes": 107374182528,
+      "generated_docs": 149147666,
+      "problems": [],
+      "forcemerge_seconds": 617.5,
+      "forcemerge_status": 200,
+      "settings": {
+        ".ds-logs-otel.columnar-bench-2026.10.22-000001": {
+          "mode": "logsdb_columnar",
+          "source_mode": "synthetic",
+          "shards": "2",
+          "replicas": "0"
+        }
+      },
+      "mapping": {
+        "text_fields": {
+          "body.text": "match_only_text",
+          "attributes.exception.message": "match_only_text"
+        }
+      },
+      "es_doc_count": 149147666,
+      "required_field_coverage": {
+        "@timestamp": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "body.text": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "severity_text": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "severity_number": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "resource.attributes.service.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "resource.attributes.host.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "resource.attributes.k8s.pod.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "scope.name": {
+          "docs_with_field": 149147666,
+          "complete": true
+        },
+        "scope.version": {
+          "docs_with_field": 149147666,
+          "complete": true
+        }
+      },
+      "primary_store_bytes": 11398138106,
+      "compression_ratio": 9.42,
+      "bytes_per_doc_on_disk": 76.42,
+      "raw_bytes_per_doc": 719.92,
+      "text_search_match_hits": 24240221,
+      "round_trip": {
+        "window_start": "2026-10-18T11:48:03.001Z",
+        "window_end": "2026-10-18T11:48:08.001Z",
+        "es_docs_in_window": 5083,
+        "file_docs_in_window": 5083,
+        "docs_identical": true,
+        "missing_in_es": 0,
+        "unexpected_in_es": 0
+      },
+      "passed": true
+    },
+    {
+      "data_stream": "traces-otel.logsdb-bench",
+      "kind": "traces",
+      "expected_mode": "logsdb",
+      "raw_file": "traces.ndjson",
+      "raw_bytes": 107374186184,
+      "generated_docs": 154100082,
+      "problems": [],
+      "forcemerge_seconds": 718.9,
+      "forcemerge_status": 200,
+      "settings": {
+        ".ds-traces-otel.logsdb-bench-2026.10.22-000001": {
+          "mode": "logsdb",
+          "source_mode": "synthetic",
+          "shards": "2",
+          "replicas": "0"
+        }
+      },
+      "mapping": {
+        "text_fields": {
+          "attributes.exception.message": "match_only_text",
+          "status.message": "match_only_text"
+        }
+      },
+      "es_doc_count": 154100082,
+      "required_field_coverage": {
+        "@timestamp": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "trace_id": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "span_id": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "name": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "kind": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "duration": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "status.code": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "scope.name": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "resource.attributes.service.name": {
+          "docs_with_field": 154100082,
+          "complete": true
+        }
+      },
+      "primary_store_bytes": 17282974865,
+      "compression_ratio": 6.213,
+      "bytes_per_doc_on_disk": 112.15,
+      "raw_bytes_per_doc": 696.78,
+      "round_trip": {
+        "window_start": "2026-10-18T11:48:03.002Z",
+        "window_end": "2026-10-18T11:48:08.002Z",
+        "es_docs_in_window": 9729,
+        "file_docs_in_window": 9729,
+        "docs_identical": true,
+        "missing_in_es": 0,
+        "unexpected_in_es": 0
+      },
+      "passed": true
+    },
+    {
+      "data_stream": "traces-otel.columnar-bench",
+      "kind": "traces",
+      "expected_mode": "logsdb_columnar",
+      "raw_file": "traces.ndjson",
+      "raw_bytes": 107374186184,
+      "generated_docs": 154100082,
+      "problems": [],
+      "forcemerge_seconds": 505.7,
+      "forcemerge_status": 200,
+      "settings": {
+        ".ds-traces-otel.columnar-bench-2026.10.22-000001": {
+          "mode": "logsdb_columnar",
+          "source_mode": "synthetic",
+          "shards": "2",
+          "replicas": "0"
+        }
+      },
+      "mapping": {
+        "text_fields": {
+          "attributes.exception.message": "match_only_text",
+          "status.message": "match_only_text"
+        }
+      },
+      "es_doc_count": 154100082,
+      "required_field_coverage": {
+        "@timestamp": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "trace_id": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "span_id": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "name": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "kind": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "duration": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "status.code": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "scope.name": {
+          "docs_with_field": 154100082,
+          "complete": true
+        },
+        "resource.attributes.service.name": {
+          "docs_with_field": 154100082,
+          "complete": true
+        }
+      },
+      "primary_store_bytes": 10300987616,
+      "compression_ratio": 10.424,
+      "bytes_per_doc_on_disk": 66.85,
+      "raw_bytes_per_doc": 696.78,
+      "round_trip": {
+        "window_start": "2026-10-18T11:48:03.002Z",
+        "window_end": "2026-10-18T11:48:08.002Z",
+        "es_docs_in_window": 9729,
+        "file_docs_in_window": 9729,
+        "docs_identical": true,
+        "missing_in_es": 0,
+        "unexpected_in_es": 0
+      },
+      "passed": true
+    },
+    {
+      "data_stream": "metrics-otel.tsds-bench",
+      "kind": "metrics",
+      "expected_mode": "time_series",
+      "raw_file": "metrics.ndjson",
+      "raw_bytes": 107375888603,
+      "generated_docs": 274280000,
+      "problems": [],
+      "forcemerge_seconds": 236.9,
+      "forcemerge_status": 200,
+      "settings": {
+        ".ds-metrics-otel.tsds-bench-2026.10.22-000001": {
+          "mode": "time_series",
+          "source_mode": "synthetic",
+          "shards": "2",
+          "replicas": "0",
+          "time_series": {
+            "end_time": "2026-10-22T16:19:37.000Z",
+            "start_time": "2026-10-15T12:58:50.000Z"
+          },
+          "routing_path": [
+            "resource.attributes.service.name",
+            "resource.attributes.host.name",
+            "resource.attributes.k8s.pod.name",
+            "resource.attributes.k8s.namespace.name",
+            "resource.attributes.cloud.region",
+            "attributes.stream"
+          ]
+        }
+      },
+      "mapping": {
+        "text_fields": {}
+      },
+      "es_doc_count": 274280000,
+      "required_field_coverage": {
+        "@timestamp": {
+          "docs_with_field": 274280000,
+          "complete": true
+        },
+        "attributes.stream": {
+          "docs_with_field": 274280000,
+          "complete": true
+        },
+        "resource.attributes.service.name": {
+          "docs_with_field": 274280000,
+          "complete": true
+        },
+        "resource.attributes.host.name": {
+          "docs_with_field": 274280000,
+          "complete": true
+        },
+        "resource.attributes.k8s.pod.name": {
+          "docs_with_field": 274280000,
+          "complete": true
+        },
+        "resource.attributes.k8s.namespace.name": {
+          "docs_with_field": 274280000,
+          "complete": true
+        },
+        "resource.attributes.cloud.region": {
+          "docs_with_field": 274280000,
+          "complete": true
+        }
+      },
+      "primary_store_bytes": 1903391531,
+      "compression_ratio": 56.413,
+      "bytes_per_doc_on_disk": 6.94,
+      "raw_bytes_per_doc": 391.48,
+      "round_trip": {
+        "window_start": "2026-10-16T11:48:00.000Z",
+        "window_end": "2026-10-16T11:48:05.000Z",
+        "es_docs_in_window": 10000,
+        "file_docs_in_window": 10000,
+        "docs_identical": true,
+        "missing_in_es": 0,
+        "unexpected_in_es": 0
+      },
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

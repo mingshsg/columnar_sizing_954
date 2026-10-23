@@ -1,0 +1,16 @@
+2026-10-22T11:48:03Z stage generate: 100 GiB per signal (base logs=1792324083000 traces=1792324083000 metrics=1792151280000)
+2026-10-22T12:34:55Z validate logs
+2026-10-22T12:41:11Z validate traces
+2026-10-22T12:47:43Z validate metrics
+2026-10-22T12:58:49Z setup: templates and data streams (recreated, so loads always start from empty)
+2026-10-22T12:58:50Z load logs-otel.logsdb-bench from logs.ndjson
+2026-10-22T13:28:20Z load logs-otel.columnar-bench from logs.ndjson
+2026-10-22T13:50:09Z load traces-otel.logsdb-bench from traces.ndjson
+2026-10-22T14:18:53Z load traces-otel.columnar-bench from traces.ndjson
+2026-10-22T14:38:52Z load metrics-otel.tsds-bench from metrics.ndjson
+2026-10-22T15:21:51Z verify
+2026-10-22T15:35:07Z validate logs: already passed
+2026-10-22T15:35:07Z validate traces: already passed
+2026-10-22T15:35:07Z validate metrics: already passed
+2026-10-22T15:35:07Z verify
+2026-10-22T16:09:53Z pipeline complete

@@ -1,0 +1,14 @@
+{
+  "data_stream": "metrics-otel.tsds-bench",
+  "file": "metrics.ndjson",
+  "file_bytes": 107375888603,
+  "docs_sent": 274280000,
+  "docs_indexed": 274280000,
+  "docs_failed": 0,
+  "http_errors": 0,
+  "error_samples": [],
+  "seconds": 2578.7,
+  "docs_per_second": 106363.9,
+  "mb_per_second": 41.64,
+  "completed": true
+}

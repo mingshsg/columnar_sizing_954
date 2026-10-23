@@ -1,0 +1,21 @@
+{
+  "docs_checked": 149147666,
+  "docs_with_errors": 0,
+  "error_count": 0,
+  "error_samples": {},
+  "errors_by_rule": {},
+  "file": "logs.ndjson",
+  "file_bytes": 107374182528,
+  "passed": true,
+  "signal": "logs",
+  "timestamp_max": "2026-10-20T05:13:53.896Z",
+  "timestamp_min": "2026-10-18T11:48:03.001Z",
+  "validation_seconds": 375.7,
+  "value_distribution": {
+    "severity.DEBUG": 22370540,
+    "severity.ERROR": 11933295,
+    "severity.INFO": 96947563,
+    "severity.WARN": 17896268
+  },
+  "workers": 4
+}

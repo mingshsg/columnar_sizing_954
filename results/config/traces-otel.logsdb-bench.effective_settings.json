@@ -1,0 +1,1 @@
+{".ds-traces-otel.logsdb-bench-2026.10.22-000001":{"settings":{"index":{"mode":"logsdb","mapping":{"source":{"mode":"synthetic"}},"number_of_shards":"2"}},"defaults":{"index":{"sort":{"missing":["_last","_last"],"mode":["min","max"],"field":["host.name","@timestamp"],"order":["asc","desc"]},"routing_path":[],"codec":"best_compression","look_back_time":"2h"}}}}

@@ -1,0 +1,1 @@
+{"signal": "metrics", "file": "metrics.ndjson", "docs": 274280000, "bytes": 107375888603, "target_bytes": 107374182400, "seed": 303, "first_timestamp": "2026-10-16T11:48:00.000Z", "last_timestamp": "2026-10-19T15:59:20.000Z", "generation_seconds": 2592.5, "docs_per_second": 105796.7}

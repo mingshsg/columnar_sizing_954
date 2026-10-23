@@ -1,0 +1,14 @@
+{
+  "data_stream": "traces-otel.columnar-bench",
+  "file": "traces.ndjson",
+  "file_bytes": 107374186184,
+  "docs_sent": 154100082,
+  "docs_indexed": 154100082,
+  "docs_failed": 0,
+  "http_errors": 0,
+  "error_samples": [],
+  "seconds": 1199.5,
+  "docs_per_second": 128468.9,
+  "mb_per_second": 89.51,
+  "completed": true
+}

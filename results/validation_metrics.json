@@ -1,0 +1,22 @@
+{
+  "docs_checked": 274280000,
+  "docs_with_errors": 0,
+  "error_count": 0,
+  "error_samples": {},
+  "errors_by_rule": {},
+  "file": "metrics.ndjson",
+  "file_bytes": 107375888603,
+  "passed": true,
+  "signal": "metrics",
+  "timestamp_max": "2026-10-19T15:59:10.000Z",
+  "timestamp_min": "2026-10-16T11:48:00.000Z",
+  "validation_seconds": 665.5,
+  "value_distribution": {
+    "stream.cpu": 54856000,
+    "stream.disk": 54856000,
+    "stream.http": 54856000,
+    "stream.memory": 54856000,
+    "stream.network": 54856000
+  },
+  "workers": 4
+}

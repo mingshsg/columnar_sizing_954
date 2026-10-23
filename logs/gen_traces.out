@@ -1,0 +1,1 @@
+{"signal": "traces", "file": "traces.ndjson", "docs": 154100082, "bytes": 107374186184, "target_bytes": 107374182400, "seed": 202, "first_timestamp": "2026-10-18T11:48:03.000Z", "last_timestamp": "2026-10-19T09:12:12.376Z", "generation_seconds": 2056.5, "docs_per_second": 74934.3}

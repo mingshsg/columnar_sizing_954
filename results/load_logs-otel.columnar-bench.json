@@ -1,0 +1,14 @@
+{
+  "data_stream": "logs-otel.columnar-bench",
+  "file": "logs.ndjson",
+  "file_bytes": 107374182528,
+  "docs_sent": 149147666,
+  "docs_indexed": 149147666,
+  "docs_failed": 0,
+  "http_errors": 0,
+  "error_samples": [],
+  "seconds": 1308.9,
+  "docs_per_second": 113947.2,
+  "mb_per_second": 82.03,
+  "completed": true
+}

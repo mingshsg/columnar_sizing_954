@@ -1,0 +1,20 @@
+{
+  "docs_checked": 5,
+  "docs_with_errors": 0,
+  "error_count": 0,
+  "error_samples": {},
+  "errors_by_rule": {},
+  "file": "metrics.sample.ndjson",
+  "file_bytes": 1896,
+  "passed": true,
+  "signal": "metrics",
+  "timestamp_max": "2026-10-19T01:30:50.000Z",
+  "timestamp_min": "2026-10-16T11:48:00.000Z",
+  "validation_seconds": 0.0,
+  "value_distribution": {
+    "stream.cpu": 1,
+    "stream.memory": 3,
+    "stream.network": 1
+  },
+  "workers": 1
+}

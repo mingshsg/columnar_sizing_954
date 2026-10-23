@@ -1,0 +1,20 @@
+{
+  "docs_checked": 154100082,
+  "docs_with_errors": 0,
+  "error_count": 0,
+  "error_samples": {},
+  "errors_by_rule": {},
+  "file": "traces.ndjson",
+  "file_bytes": 107374186184,
+  "passed": true,
+  "signal": "traces",
+  "timestamp_max": "2026-10-19T09:12:12.744Z",
+  "timestamp_min": "2026-10-18T11:48:03.002Z",
+  "validation_seconds": 392.4,
+  "value_distribution": {
+    "kind.SPAN_KIND_CLIENT": 68488054,
+    "kind.SPAN_KIND_INTERNAL": 29967668,
+    "kind.SPAN_KIND_SERVER": 55644360
+  },
+  "workers": 4
+}

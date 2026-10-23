@@ -1,0 +1,14 @@
+{
+  "data_stream": "traces-otel.logsdb-bench",
+  "file": "traces.ndjson",
+  "file_bytes": 107374186184,
+  "docs_sent": 154100082,
+  "docs_indexed": 154100082,
+  "docs_failed": 0,
+  "http_errors": 0,
+  "error_samples": [],
+  "seconds": 1723.2,
+  "docs_per_second": 89429.0,
+  "mb_per_second": 62.31,
+  "completed": true
+}

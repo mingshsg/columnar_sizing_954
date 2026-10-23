@@ -1,0 +1,12 @@
+# Secrets
+.env
+
+# Raw generated data (about 300 GiB) and the Elasticsearch data directory
+data/
+es-data/
+
+# Python and partial outputs
+__pycache__/
+*.pyc
+*.partial
+results/.done_*
