@@ -1,1 +1,92 @@
-{".ds-traces-otel.columnar-bench-2026.10.22-000001":{"mappings":{"dynamic":"strict","_data_stream_timestamp":{"enabled":true},"properties":{"@timestamp":{"type":"date","ignore_malformed":false},"attributes.db.system":{"type":"keyword"},"attributes.exception.message":{"type":"match_only_text"},"attributes.exception.type":{"type":"keyword"},"attributes.http.request.method":{"type":"keyword"},"attributes.http.response.status_code":{"type":"long"},"attributes.http.route":{"type":"keyword"},"attributes.server.address":{"type":"keyword"},"duration":{"type":"long"},"host.name":{"type":"keyword","ignore_above":1024},"kind":{"type":"keyword"},"name":{"type":"keyword"},"parent_span_id":{"type":"keyword"},"resource.attributes.cloud.region":{"type":"keyword"},"resource.attributes.deployment.environment.name":{"type":"keyword"},"resource.attributes.host.name":{"type":"keyword"},"resource.attributes.k8s.namespace.name":{"type":"keyword"},"resource.attributes.k8s.pod.name":{"type":"keyword"},"resource.attributes.service.name":{"type":"keyword"},"resource.attributes.service.version":{"type":"keyword"},"scope.name":{"type":"keyword"},"scope.version":{"type":"keyword"},"span_id":{"type":"keyword"},"status.code":{"type":"keyword"},"status.message":{"type":"match_only_text"},"trace_id":{"type":"keyword"}}}}}
+{
+  ".ds-traces-otel.columnar-bench-2026.10.22-000001": {
+    "mappings": {
+      "dynamic": "strict",
+      "_data_stream_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "@timestamp": {
+          "type": "date",
+          "ignore_malformed": false
+        },
+        "attributes.db.system": {
+          "type": "keyword"
+        },
+        "attributes.exception.message": {
+          "type": "match_only_text"
+        },
+        "attributes.exception.type": {
+          "type": "keyword"
+        },
+        "attributes.http.request.method": {
+          "type": "keyword"
+        },
+        "attributes.http.response.status_code": {
+          "type": "long"
+        },
+        "attributes.http.route": {
+          "type": "keyword"
+        },
+        "attributes.server.address": {
+          "type": "keyword"
+        },
+        "duration": {
+          "type": "long"
+        },
+        "host.name": {
+          "type": "keyword",
+          "ignore_above": 1024
+        },
+        "kind": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "parent_span_id": {
+          "type": "keyword"
+        },
+        "resource.attributes.cloud.region": {
+          "type": "keyword"
+        },
+        "resource.attributes.deployment.environment.name": {
+          "type": "keyword"
+        },
+        "resource.attributes.host.name": {
+          "type": "keyword"
+        },
+        "resource.attributes.k8s.namespace.name": {
+          "type": "keyword"
+        },
+        "resource.attributes.k8s.pod.name": {
+          "type": "keyword"
+        },
+        "resource.attributes.service.name": {
+          "type": "keyword"
+        },
+        "resource.attributes.service.version": {
+          "type": "keyword"
+        },
+        "scope.name": {
+          "type": "keyword"
+        },
+        "scope.version": {
+          "type": "keyword"
+        },
+        "span_id": {
+          "type": "keyword"
+        },
+        "status.code": {
+          "type": "keyword"
+        },
+        "status.message": {
+          "type": "match_only_text"
+        },
+        "trace_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

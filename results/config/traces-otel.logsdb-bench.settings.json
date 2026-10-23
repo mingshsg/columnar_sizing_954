@@ -1,1 +1,34 @@
-{".ds-traces-otel.logsdb-bench-2026.10.22-000001":{"settings":{"index":{"mode":"logsdb","routing":{"allocation":{"include":{"_tier_preference":"data_hot"}}},"mapping":{"source":{"mode":"synthetic"}},"hidden":"true","number_of_shards":"2","logsdb":{"add_host_name_field":"true","sort_on_host_name":"true"},"provided_name":".ds-traces-otel.logsdb-bench-2026.10.22-000001","creation_date":"1792673929972","number_of_replicas":"0","uuid":"ocscBlDDQz2OoV8RtRwdhA","version":{"created":"9111000"}}}}}
+{
+  ".ds-traces-otel.logsdb-bench-2026.10.22-000001": {
+    "settings": {
+      "index": {
+        "mode": "logsdb",
+        "routing": {
+          "allocation": {
+            "include": {
+              "_tier_preference": "data_hot"
+            }
+          }
+        },
+        "mapping": {
+          "source": {
+            "mode": "synthetic"
+          }
+        },
+        "hidden": "true",
+        "number_of_shards": "2",
+        "logsdb": {
+          "add_host_name_field": "true",
+          "sort_on_host_name": "true"
+        },
+        "provided_name": ".ds-traces-otel.logsdb-bench-2026.10.22-000001",
+        "creation_date": "1792673929972",
+        "number_of_replicas": "0",
+        "uuid": "ocscBlDDQz2OoV8RtRwdhA",
+        "version": {
+          "created": "9111000"
+        }
+      }
+    }
+  }
+}

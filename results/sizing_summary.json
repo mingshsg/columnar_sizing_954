@@ -1,0 +1,1257 @@
+{
+  "title": "Sizing summary: Elasticsearch 9.5.5, logsdb vs logsdb_columnar vs TSDS",
+  "how_to_read": {
+    "raw_bytes": "Raw NDJSON bytes of the generated documents (bulk action lines excluded). This is the 100 GiB reference.",
+    "primary_store_bytes": "Primary shard store size after refresh and force-merge to one segment per shard.",
+    "compression_ratio": "raw_bytes / primary_store_bytes.",
+    "structures": "On-disk structures from the index disk usage API. A field's bytes are its share of each structure.",
+    "columnar_saving_percent": "How much smaller logsdb_columnar is than logsdb, as a percentage of the logsdb size.",
+    "original_copy": "logsdb keeps a copy of match_only_text values (`<field>._original`) for synthetic _source. Columnar stores the text in doc values instead."
+  },
+  "cluster": {
+    "version": "9.5.5",
+    "license": "trial"
+  },
+  "all_data_streams_passed": true,
+  "data_streams": [
+    {
+      "data_stream": "logs-otel.logsdb-bench",
+      "kind": "logs",
+      "expected_mode": "logsdb",
+      "documents": 149147666,
+      "raw_bytes": 107374182528,
+      "raw_human": "100.00 GiB",
+      "primary_store_bytes": 17028159116,
+      "primary_store_human": "15.86 GiB",
+      "compression_ratio": 6.306,
+      "bytes_per_document_on_disk": 114.17,
+      "checks_passed": true
+    },
+    {
+      "data_stream": "logs-otel.columnar-bench",
+      "kind": "logs",
+      "expected_mode": "logsdb_columnar",
+      "documents": 149147666,
+      "raw_bytes": 107374182528,
+      "raw_human": "100.00 GiB",
+      "primary_store_bytes": 11398138106,
+      "primary_store_human": "10.62 GiB",
+      "compression_ratio": 9.42,
+      "bytes_per_document_on_disk": 76.42,
+      "checks_passed": true
+    },
+    {
+      "data_stream": "traces-otel.logsdb-bench",
+      "kind": "traces",
+      "expected_mode": "logsdb",
+      "documents": 154100082,
+      "raw_bytes": 107374186184,
+      "raw_human": "100.00 GiB",
+      "primary_store_bytes": 17282974865,
+      "primary_store_human": "16.10 GiB",
+      "compression_ratio": 6.213,
+      "bytes_per_document_on_disk": 112.15,
+      "checks_passed": true
+    },
+    {
+      "data_stream": "traces-otel.columnar-bench",
+      "kind": "traces",
+      "expected_mode": "logsdb_columnar",
+      "documents": 154100082,
+      "raw_bytes": 107374186184,
+      "raw_human": "100.00 GiB",
+      "primary_store_bytes": 10300987616,
+      "primary_store_human": "9.59 GiB",
+      "compression_ratio": 10.424,
+      "bytes_per_document_on_disk": 66.85,
+      "checks_passed": true
+    },
+    {
+      "data_stream": "metrics-otel.tsds-bench",
+      "kind": "metrics",
+      "expected_mode": "time_series",
+      "documents": 274280000,
+      "raw_bytes": 107375888603,
+      "raw_human": "100.00 GiB",
+      "primary_store_bytes": 1903391531,
+      "primary_store_human": "1.77 GiB",
+      "compression_ratio": 56.413,
+      "bytes_per_document_on_disk": 6.94,
+      "checks_passed": true
+    }
+  ],
+  "comparison": {
+    "logs": {
+      "logsdb": {
+        "data_stream": "logs-otel.logsdb-bench",
+        "structures": {
+          "store_size": {
+            "bytes": 17028159116,
+            "human": "15.86 GiB"
+          },
+          "all_fields_total": {
+            "bytes": 16942177489,
+            "human": "15.78 GiB"
+          },
+          "inverted_index": {
+            "bytes": 7403127829,
+            "human": "6.89 GiB"
+          },
+          "doc_values": {
+            "bytes": 8363318168,
+            "human": "7.79 GiB"
+          },
+          "stored_fields": {
+            "bytes": 343534439,
+            "human": "327.62 MiB"
+          },
+          "points": {
+            "bytes": 832197053,
+            "human": "793.64 MiB"
+          }
+        }
+      },
+      "logsdb_columnar": {
+        "data_stream": "logs-otel.columnar-bench",
+        "structures": {
+          "store_size": {
+            "bytes": 11398138106,
+            "human": "10.62 GiB"
+          },
+          "all_fields_total": {
+            "bytes": 11380784032,
+            "human": "10.60 GiB"
+          },
+          "inverted_index": {
+            "bytes": 1974428450,
+            "human": "1.84 GiB"
+          },
+          "doc_values": {
+            "bytes": 9406355582,
+            "human": "8.76 GiB"
+          },
+          "stored_fields": {
+            "bytes": 0,
+            "human": "0 B"
+          },
+          "points": {
+            "bytes": 0,
+            "human": "0 B"
+          }
+        }
+      },
+      "columnar_saving_percent": 33.1,
+      "text_fields": [
+        {
+          "field": "body.text",
+          "logsdb_bytes_including_original_copy": 2990745593,
+          "logsdb_human": "2.79 GiB",
+          "columnar_bytes": 2989050763,
+          "columnar_human": "2.78 GiB"
+        },
+        {
+          "field": "attributes.exception.message",
+          "logsdb_bytes_including_original_copy": 115616961,
+          "logsdb_human": "110.26 MiB",
+          "columnar_bytes": 115620551,
+          "columnar_human": "110.26 MiB"
+        }
+      ],
+      "fields_sorted_by_combined_size": [
+        {
+          "field": "trace_id",
+          "logsdb_bytes": 5159345156,
+          "logsdb_human": "4.81 GiB",
+          "columnar_bytes": 1519059592,
+          "columnar_human": "1.41 GiB",
+          "difference_bytes": -3640285564,
+          "difference_human": "-3.39 GiB"
+        },
+        {
+          "field": "body.text",
+          "logsdb_bytes": 1500513150,
+          "logsdb_human": "1.40 GiB",
+          "columnar_bytes": 2989050763,
+          "columnar_human": "2.78 GiB",
+          "difference_bytes": 1488537613,
+          "difference_human": "1.39 GiB"
+        },
+        {
+          "field": "span_id",
+          "logsdb_bytes": 2573713809,
+          "logsdb_human": "2.40 GiB",
+          "columnar_bytes": 791711986,
+          "columnar_human": "755.04 MiB",
+          "difference_bytes": -1782001823,
+          "difference_human": "-1.66 GiB"
+        },
+        {
+          "field": "_id",
+          "logsdb_bytes": 765277858,
+          "logsdb_human": "729.83 MiB",
+          "columnar_bytes": 869680389,
+          "columnar_human": "829.39 MiB",
+          "difference_bytes": 104402531,
+          "difference_human": "99.57 MiB"
+        },
+        {
+          "field": "body.text._original",
+          "logsdb_bytes": 1490232443,
+          "logsdb_human": "1.39 GiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -1490232443,
+          "difference_human": "-1.39 GiB"
+        },
+        {
+          "field": "resource.attributes.k8s.pod.name",
+          "logsdb_bytes": 464516331,
+          "logsdb_human": "443.00 MiB",
+          "columnar_bytes": 978955403,
+          "columnar_human": "933.60 MiB",
+          "difference_bytes": 514439072,
+          "difference_human": "490.61 MiB"
+        },
+        {
+          "field": "attributes.app.order.id",
+          "logsdb_bytes": 780559822,
+          "logsdb_human": "744.40 MiB",
+          "columnar_bytes": 273777476,
+          "columnar_human": "261.09 MiB",
+          "difference_bytes": -506782346,
+          "difference_human": "-483.31 MiB"
+        },
+        {
+          "field": "attributes.url.path",
+          "logsdb_bytes": 526893499,
+          "logsdb_human": "502.48 MiB",
+          "columnar_bytes": 406343258,
+          "columnar_human": "387.52 MiB",
+          "difference_bytes": -120550241,
+          "difference_human": "-114.97 MiB"
+        },
+        {
+          "field": "observed_timestamp",
+          "logsdb_bytes": 633020982,
+          "logsdb_human": "603.70 MiB",
+          "columnar_bytes": 175780531,
+          "columnar_human": "167.64 MiB",
+          "difference_bytes": -457240451,
+          "difference_human": "-436.06 MiB"
+        },
+        {
+          "field": "attributes.thread.name",
+          "logsdb_bytes": 348037824,
+          "logsdb_human": "331.91 MiB",
+          "columnar_bytes": 370667432,
+          "columnar_human": "353.50 MiB",
+          "difference_bytes": 22629608,
+          "difference_human": "21.58 MiB"
+        },
+        {
+          "field": "resource.attributes.host.name",
+          "logsdb_bytes": 348044851,
+          "logsdb_human": "331.92 MiB",
+          "columnar_bytes": 338051728,
+          "columnar_human": "322.39 MiB",
+          "difference_bytes": -9993123,
+          "difference_human": "-9.53 MiB"
+        },
+        {
+          "field": "resource.attributes.service.name",
+          "logsdb_bytes": 263856137,
+          "logsdb_human": "251.63 MiB",
+          "columnar_bytes": 412845060,
+          "columnar_human": "393.72 MiB",
+          "difference_bytes": 148988923,
+          "difference_human": "142.09 MiB"
+        },
+        {
+          "field": "resource.attributes.service.version",
+          "logsdb_bytes": 261011889,
+          "logsdb_human": "248.92 MiB",
+          "columnar_bytes": 265821381,
+          "columnar_human": "253.51 MiB",
+          "difference_bytes": 4809492,
+          "difference_human": "4.59 MiB"
+        },
+        {
+          "field": "attributes.http.response.status_code",
+          "logsdb_bytes": 314754376,
+          "logsdb_human": "300.17 MiB",
+          "columnar_bytes": 177942467,
+          "columnar_human": "169.70 MiB",
+          "difference_bytes": -136811909,
+          "difference_human": "-130.47 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.namespace.name",
+          "logsdb_bytes": 153967578,
+          "logsdb_human": "146.83 MiB",
+          "columnar_bytes": 237928485,
+          "columnar_human": "226.91 MiB",
+          "difference_bytes": 83960907,
+          "difference_human": "80.07 MiB"
+        },
+        {
+          "field": "resource.attributes.cloud.region",
+          "logsdb_bytes": 119429367,
+          "logsdb_human": "113.90 MiB",
+          "columnar_bytes": 248739533,
+          "columnar_human": "237.22 MiB",
+          "difference_bytes": 129310166,
+          "difference_human": "123.32 MiB"
+        },
+        {
+          "field": "scope.name",
+          "logsdb_bytes": 109436635,
+          "logsdb_human": "104.37 MiB",
+          "columnar_bytes": 246761097,
+          "columnar_human": "235.33 MiB",
+          "difference_bytes": 137324462,
+          "difference_human": "130.96 MiB"
+        },
+        {
+          "field": "attributes.http.request.method",
+          "logsdb_bytes": 131157776,
+          "logsdb_human": "125.08 MiB",
+          "columnar_bytes": 167025806,
+          "columnar_human": "159.29 MiB",
+          "difference_bytes": 35868030,
+          "difference_human": "34.21 MiB"
+        },
+        {
+          "field": "attributes.app.cart.items",
+          "logsdb_bytes": 207526392,
+          "logsdb_human": "197.91 MiB",
+          "columnar_bytes": 53526247,
+          "columnar_human": "51.05 MiB",
+          "difference_bytes": -154000145,
+          "difference_human": "-146.87 MiB"
+        },
+        {
+          "field": "severity_text",
+          "logsdb_bytes": 112197575,
+          "logsdb_human": "107.00 MiB",
+          "columnar_bytes": 137192309,
+          "columnar_human": "130.84 MiB",
+          "difference_bytes": 24994734,
+          "difference_human": "23.84 MiB"
+        },
+        {
+          "field": "scope.version",
+          "logsdb_bytes": 74969659,
+          "logsdb_human": "71.50 MiB",
+          "columnar_bytes": 127196971,
+          "columnar_human": "121.30 MiB",
+          "difference_bytes": 52227312,
+          "difference_human": "49.81 MiB"
+        },
+        {
+          "field": "attributes.exception.message",
+          "logsdb_bytes": 70599175,
+          "logsdb_human": "67.33 MiB",
+          "columnar_bytes": 115620551,
+          "columnar_human": "110.26 MiB",
+          "difference_bytes": 45021376,
+          "difference_human": "42.94 MiB"
+        },
+        {
+          "field": "resource.attributes.deployment.environment.name",
+          "logsdb_bytes": 47397345,
+          "logsdb_human": "45.20 MiB",
+          "columnar_bytes": 132758889,
+          "columnar_human": "126.61 MiB",
+          "difference_bytes": 85361544,
+          "difference_human": "81.41 MiB"
+        },
+        {
+          "field": "@timestamp",
+          "logsdb_bytes": 84694584,
+          "logsdb_human": "80.77 MiB",
+          "columnar_bytes": 84703631,
+          "columnar_human": "80.78 MiB",
+          "difference_bytes": 9047,
+          "difference_human": "8.83 KiB"
+        },
+        {
+          "field": "severity_number",
+          "logsdb_bytes": 122267306,
+          "logsdb_human": "116.60 MiB",
+          "columnar_bytes": 41983754,
+          "columnar_human": "40.04 MiB",
+          "difference_bytes": -80283552,
+          "difference_human": "-76.56 MiB"
+        },
+        {
+          "field": "_seq_no",
+          "logsdb_bytes": 158233265,
+          "logsdb_human": "150.90 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -158233265,
+          "difference_human": "-150.90 MiB"
+        },
+        {
+          "field": "attributes.exception.type",
+          "logsdb_bytes": 36776214,
+          "logsdb_human": "35.07 MiB",
+          "columnar_bytes": 42547035,
+          "columnar_human": "40.58 MiB",
+          "difference_bytes": 5770821,
+          "difference_human": "5.50 MiB"
+        },
+        {
+          "field": "attributes.exception.message._original",
+          "logsdb_bytes": 45017786,
+          "logsdb_human": "42.93 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -45017786,
+          "difference_human": "-42.93 MiB"
+        },
+        {
+          "field": "attributes.http.request.method.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22504096,
+          "columnar_human": "21.46 MiB",
+          "difference_bytes": 22504096,
+          "difference_human": "21.46 MiB"
+        },
+        {
+          "field": "attributes.url.path.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22504096,
+          "columnar_human": "21.46 MiB",
+          "difference_bytes": 22504096,
+          "difference_human": "21.46 MiB"
+        },
+        {
+          "field": "span_id.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 21374077,
+          "columnar_human": "20.38 MiB",
+          "difference_bytes": 21374077,
+          "difference_human": "20.38 MiB"
+        },
+        {
+          "field": "trace_id.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 21374077,
+          "columnar_human": "20.38 MiB",
+          "difference_bytes": 21374077,
+          "difference_human": "20.38 MiB"
+        },
+        {
+          "field": "attributes.app.order.id.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 20314562,
+          "columnar_human": "19.37 MiB",
+          "difference_bytes": 20314562,
+          "difference_human": "19.37 MiB"
+        },
+        {
+          "field": "attributes.exception.message.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 19537531,
+          "columnar_human": "18.63 MiB",
+          "difference_bytes": 19537531,
+          "difference_human": "18.63 MiB"
+        },
+        {
+          "field": "attributes.exception.type.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 19537531,
+          "columnar_human": "18.63 MiB",
+          "difference_bytes": 19537531,
+          "difference_human": "18.63 MiB"
+        },
+        {
+          "field": "attributes.exception.message._original.counts",
+          "logsdb_bytes": 19537519,
+          "logsdb_human": "18.63 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -19537519,
+          "difference_human": "-18.63 MiB"
+        },
+        {
+          "field": "_field_names",
+          "logsdb_bytes": 16860664,
+          "logsdb_human": "16.08 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -16860664,
+          "difference_human": "-16.08 MiB"
+        },
+        {
+          "field": "attributes.thread.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.namespace.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "scope.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.deployment.environment.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "body.text.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.pod.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "scope.version.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.service.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.service.version.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.cloud.region.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.host.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "severity_text.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "body.text._original.counts",
+          "logsdb_bytes": 2330522,
+          "logsdb_human": "2.22 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -2330522,
+          "difference_human": "-2.22 MiB"
+        },
+        {
+          "field": "_version",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "_recovery_source_size",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "_primary_term",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "__root_doc_for_nested",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        }
+      ]
+    },
+    "traces": {
+      "logsdb": {
+        "data_stream": "traces-otel.logsdb-bench",
+        "structures": {
+          "store_size": {
+            "bytes": 17282974865,
+            "human": "16.10 GiB"
+          },
+          "all_fields_total": {
+            "bytes": 17175821611,
+            "human": "16.00 GiB"
+          },
+          "inverted_index": {
+            "bytes": 7178336596,
+            "human": "6.69 GiB"
+          },
+          "doc_values": {
+            "bytes": 8918596966,
+            "human": "8.31 GiB"
+          },
+          "stored_fields": {
+            "bytes": 398198545,
+            "human": "379.75 MiB"
+          },
+          "points": {
+            "bytes": 680689504,
+            "human": "649.16 MiB"
+          }
+        }
+      },
+      "logsdb_columnar": {
+        "data_stream": "traces-otel.columnar-bench",
+        "structures": {
+          "store_size": {
+            "bytes": 10300987616,
+            "human": "9.59 GiB"
+          },
+          "all_fields_total": {
+            "bytes": 10299466624,
+            "human": "9.59 GiB"
+          },
+          "inverted_index": {
+            "bytes": 573239981,
+            "human": "546.68 MiB"
+          },
+          "doc_values": {
+            "bytes": 9726226643,
+            "human": "9.06 GiB"
+          },
+          "stored_fields": {
+            "bytes": 0,
+            "human": "0 B"
+          },
+          "points": {
+            "bytes": 0,
+            "human": "0 B"
+          }
+        }
+      },
+      "columnar_saving_percent": 40.4,
+      "text_fields": [
+        {
+          "field": "attributes.exception.message",
+          "logsdb_bytes_including_original_copy": 53865355,
+          "logsdb_human": "51.37 MiB",
+          "columnar_bytes": 53862079,
+          "columnar_human": "51.37 MiB"
+        },
+        {
+          "field": "status.message",
+          "logsdb_bytes_including_original_copy": 53854511,
+          "logsdb_human": "51.36 MiB",
+          "columnar_bytes": 53851357,
+          "columnar_human": "51.36 MiB"
+        }
+      ],
+      "fields_sorted_by_combined_size": [
+        {
+          "field": "span_id",
+          "logsdb_bytes": 4360114021,
+          "logsdb_human": "4.06 GiB",
+          "columnar_bytes": 1330131695,
+          "columnar_human": "1.24 GiB",
+          "difference_bytes": -3029982326,
+          "difference_human": "-2.82 GiB"
+        },
+        {
+          "field": "trace_id",
+          "logsdb_bytes": 3513426621,
+          "logsdb_human": "3.27 GiB",
+          "columnar_bytes": 1117478773,
+          "columnar_human": "1.04 GiB",
+          "difference_bytes": -2395947848,
+          "difference_human": "-2.23 GiB"
+        },
+        {
+          "field": "parent_span_id",
+          "logsdb_bytes": 3058131308,
+          "logsdb_human": "2.85 GiB",
+          "columnar_bytes": 952865071,
+          "columnar_human": "908.72 MiB",
+          "difference_bytes": -2105266237,
+          "difference_human": "-1.96 GiB"
+        },
+        {
+          "field": "_id",
+          "logsdb_bytes": 920150879,
+          "logsdb_human": "877.52 MiB",
+          "columnar_bytes": 1010508992,
+          "columnar_human": "963.70 MiB",
+          "difference_bytes": 90358113,
+          "difference_human": "86.17 MiB"
+        },
+        {
+          "field": "duration",
+          "logsdb_bytes": 1216153533,
+          "logsdb_human": "1.13 GiB",
+          "columnar_bytes": 620049888,
+          "columnar_human": "591.33 MiB",
+          "difference_bytes": -596103645,
+          "difference_human": "-568.49 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.pod.name",
+          "logsdb_bytes": 479917360,
+          "logsdb_human": "457.68 MiB",
+          "columnar_bytes": 1012175950,
+          "columnar_human": "965.29 MiB",
+          "difference_bytes": 532258590,
+          "difference_human": "507.60 MiB"
+        },
+        {
+          "field": "name",
+          "logsdb_bytes": 656874497,
+          "logsdb_human": "626.44 MiB",
+          "columnar_bytes": 571095530,
+          "columnar_human": "544.64 MiB",
+          "difference_bytes": -85778967,
+          "difference_human": "-81.81 MiB"
+        },
+        {
+          "field": "attributes.http.route",
+          "logsdb_bytes": 434576572,
+          "logsdb_human": "414.44 MiB",
+          "columnar_bytes": 316843850,
+          "columnar_human": "302.17 MiB",
+          "difference_bytes": -117732722,
+          "difference_human": "-112.28 MiB"
+        },
+        {
+          "field": "resource.attributes.host.name",
+          "logsdb_bytes": 359600452,
+          "logsdb_human": "342.94 MiB",
+          "columnar_bytes": 349270885,
+          "columnar_human": "333.09 MiB",
+          "difference_bytes": -10329567,
+          "difference_human": "-9.85 MiB"
+        },
+        {
+          "field": "resource.attributes.service.name",
+          "logsdb_bytes": 272624292,
+          "logsdb_human": "259.99 MiB",
+          "columnar_bytes": 426566517,
+          "columnar_human": "406.81 MiB",
+          "difference_bytes": 153942225,
+          "difference_human": "146.81 MiB"
+        },
+        {
+          "field": "attributes.server.address",
+          "logsdb_bytes": 231775513,
+          "logsdb_human": "221.04 MiB",
+          "columnar_bytes": 373387125,
+          "columnar_human": "356.09 MiB",
+          "difference_bytes": 141611612,
+          "difference_human": "135.05 MiB"
+        },
+        {
+          "field": "resource.attributes.service.version",
+          "logsdb_bytes": 266380892,
+          "logsdb_human": "254.04 MiB",
+          "columnar_bytes": 270432206,
+          "columnar_human": "257.90 MiB",
+          "difference_bytes": 4051314,
+          "difference_human": "3.86 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.namespace.name",
+          "logsdb_bytes": 159083690,
+          "logsdb_human": "151.71 MiB",
+          "columnar_bytes": 245839156,
+          "columnar_human": "234.45 MiB",
+          "difference_bytes": 86755466,
+          "difference_human": "82.74 MiB"
+        },
+        {
+          "field": "attributes.http.response.status_code",
+          "logsdb_bytes": 235970969,
+          "logsdb_human": "225.04 MiB",
+          "columnar_bytes": 153557139,
+          "columnar_human": "146.44 MiB",
+          "difference_bytes": -82413830,
+          "difference_human": "-78.60 MiB"
+        },
+        {
+          "field": "resource.attributes.cloud.region",
+          "logsdb_bytes": 123394097,
+          "logsdb_human": "117.68 MiB",
+          "columnar_bytes": 257004097,
+          "columnar_human": "245.10 MiB",
+          "difference_bytes": 133610000,
+          "difference_human": "127.42 MiB"
+        },
+        {
+          "field": "kind",
+          "logsdb_bytes": 107835076,
+          "logsdb_human": "102.84 MiB",
+          "columnar_bytes": 217142707,
+          "columnar_human": "207.08 MiB",
+          "difference_bytes": 109307631,
+          "difference_human": "104.24 MiB"
+        },
+        {
+          "field": "attributes.http.request.method",
+          "logsdb_bytes": 119902295,
+          "logsdb_human": "114.35 MiB",
+          "columnar_bytes": 144364475,
+          "columnar_human": "137.68 MiB",
+          "difference_bytes": 24462180,
+          "difference_human": "23.33 MiB"
+        },
+        {
+          "field": "scope.name",
+          "logsdb_bytes": 75563417,
+          "logsdb_human": "72.06 MiB",
+          "columnar_bytes": 167812652,
+          "columnar_human": "160.04 MiB",
+          "difference_bytes": 92249235,
+          "difference_human": "87.98 MiB"
+        },
+        {
+          "field": "status.code",
+          "logsdb_bytes": 64418338,
+          "logsdb_human": "61.43 MiB",
+          "columnar_bytes": 154089328,
+          "columnar_human": "146.95 MiB",
+          "difference_bytes": 89670990,
+          "difference_human": "85.52 MiB"
+        },
+        {
+          "field": "_seq_no",
+          "logsdb_bytes": 201204780,
+          "logsdb_human": "191.88 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -201204780,
+          "difference_human": "-191.88 MiB"
+        },
+        {
+          "field": "resource.attributes.deployment.environment.name",
+          "logsdb_bytes": 48976245,
+          "logsdb_human": "46.71 MiB",
+          "columnar_bytes": 137187729,
+          "columnar_human": "130.83 MiB",
+          "difference_bytes": 88211484,
+          "difference_human": "84.13 MiB"
+        },
+        {
+          "field": "@timestamp",
+          "logsdb_bytes": 71752112,
+          "logsdb_human": "68.43 MiB",
+          "columnar_bytes": 71759166,
+          "columnar_human": "68.43 MiB",
+          "difference_bytes": 7054,
+          "difference_human": "6.89 KiB"
+        },
+        {
+          "field": "attributes.exception.message",
+          "logsdb_bytes": 33538907,
+          "logsdb_human": "31.99 MiB",
+          "columnar_bytes": 53862079,
+          "columnar_human": "51.37 MiB",
+          "difference_bytes": 20323172,
+          "difference_human": "19.38 MiB"
+        },
+        {
+          "field": "status.message",
+          "logsdb_bytes": 33528803,
+          "logsdb_human": "31.98 MiB",
+          "columnar_bytes": 53851357,
+          "columnar_human": "51.36 MiB",
+          "difference_bytes": 20322554,
+          "difference_human": "19.38 MiB"
+        },
+        {
+          "field": "attributes.db.system",
+          "logsdb_bytes": 36080722,
+          "logsdb_human": "34.41 MiB",
+          "columnar_bytes": 39353151,
+          "columnar_human": "37.53 MiB",
+          "difference_bytes": 3272429,
+          "difference_human": "3.12 MiB"
+        },
+        {
+          "field": "scope.version",
+          "logsdb_bytes": 7463289,
+          "logsdb_human": "7.12 MiB",
+          "columnar_bytes": 58444278,
+          "columnar_human": "55.74 MiB",
+          "difference_bytes": 50980989,
+          "difference_human": "48.62 MiB"
+        },
+        {
+          "field": "attributes.exception.type",
+          "logsdb_bytes": 17817492,
+          "logsdb_human": "16.99 MiB",
+          "columnar_bytes": 19315996,
+          "columnar_human": "18.42 MiB",
+          "difference_bytes": 1498504,
+          "difference_human": "1.43 MiB"
+        },
+        {
+          "field": "parent_span_id.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22938724,
+          "columnar_human": "21.88 MiB",
+          "difference_bytes": 22938724,
+          "difference_human": "21.88 MiB"
+        },
+        {
+          "field": "attributes.http.request.method.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22634643,
+          "columnar_human": "21.59 MiB",
+          "difference_bytes": 22634643,
+          "difference_human": "21.59 MiB"
+        },
+        {
+          "field": "attributes.server.address.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22634643,
+          "columnar_human": "21.59 MiB",
+          "difference_bytes": 22634643,
+          "difference_human": "21.59 MiB"
+        },
+        {
+          "field": "attributes.http.route.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22634643,
+          "columnar_human": "21.59 MiB",
+          "difference_bytes": 22634643,
+          "difference_human": "21.59 MiB"
+        },
+        {
+          "field": "attributes.db.system.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 20810044,
+          "columnar_human": "19.85 MiB",
+          "difference_bytes": 20810044,
+          "difference_human": "19.85 MiB"
+        },
+        {
+          "field": "attributes.exception.message._original",
+          "logsdb_bytes": 20326448,
+          "logsdb_human": "19.38 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -20326448,
+          "difference_human": "-19.38 MiB"
+        },
+        {
+          "field": "status.message._original",
+          "logsdb_bytes": 20325708,
+          "logsdb_human": "19.38 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -20325708,
+          "difference_human": "-19.38 MiB"
+        },
+        {
+          "field": "attributes.exception.message.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 9904493,
+          "columnar_human": "9.45 MiB",
+          "difference_bytes": 9904493,
+          "difference_human": "9.45 MiB"
+        },
+        {
+          "field": "status.message.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 9904493,
+          "columnar_human": "9.45 MiB",
+          "difference_bytes": 9904493,
+          "difference_human": "9.45 MiB"
+        },
+        {
+          "field": "attributes.exception.type.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 9904493,
+          "columnar_human": "9.45 MiB",
+          "difference_bytes": 9904493,
+          "difference_human": "9.45 MiB"
+        },
+        {
+          "field": "attributes.exception.message._original.counts",
+          "logsdb_bytes": 9904464,
+          "logsdb_human": "9.45 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -9904464,
+          "difference_human": "-9.45 MiB"
+        },
+        {
+          "field": "status.message._original.counts",
+          "logsdb_bytes": 9904464,
+          "logsdb_human": "9.45 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -9904464,
+          "difference_human": "-9.45 MiB"
+        },
+        {
+          "field": "_field_names",
+          "logsdb_bytes": 9104355,
+          "logsdb_human": "8.68 MiB",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": -9104355,
+          "difference_human": "-8.68 MiB"
+        },
+        {
+          "field": "span_id.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "kind.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.namespace.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "scope.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "status.code.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.deployment.environment.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.pod.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "scope.version.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.service.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "trace_id.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.service.version.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.cloud.region.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.host.name.counts",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "_version",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "_recovery_source_size",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "_primary_term",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "__root_doc_for_nested",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        }
+      ]
+    }
+  },
+  "metrics_tsds": {
+    "data_stream": "metrics-otel.tsds-bench",
+    "primary_store_bytes": 1903391531,
+    "primary_store_human": "1.77 GiB",
+    "compression_ratio": 56.413
+  }
+}

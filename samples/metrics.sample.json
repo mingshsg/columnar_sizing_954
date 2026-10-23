@@ -1,0 +1,125 @@
+[
+  {
+    "@timestamp": "2026-10-16T11:48:00.000Z",
+    "resource": {
+      "attributes": {
+        "service.name": "cart-api",
+        "service.version": "1.1.3",
+        "host.name": "node-0000",
+        "k8s.pod.name": "cart-api-0-a155d",
+        "k8s.namespace.name": "shop-prod",
+        "cloud.region": "us-east-1",
+        "deployment.environment.name": "production"
+      }
+    },
+    "attributes": {
+      "stream": "cpu"
+    },
+    "metrics": {
+      "system": {
+        "cpu": {
+          "utilization": 0.5855
+        }
+      }
+    }
+  },
+  {
+    "@timestamp": "2026-10-16T11:48:00.000Z",
+    "resource": {
+      "attributes": {
+        "service.name": "cart-api",
+        "service.version": "1.1.3",
+        "host.name": "node-0000",
+        "k8s.pod.name": "cart-api-0-a155d",
+        "k8s.namespace.name": "shop-prod",
+        "cloud.region": "us-east-1",
+        "deployment.environment.name": "production"
+      }
+    },
+    "attributes": {
+      "stream": "memory"
+    },
+    "metrics": {
+      "system": {
+        "memory": {
+          "usage": 338643039
+        }
+      }
+    }
+  },
+  {
+    "@timestamp": "2026-10-16T11:48:00.000Z",
+    "resource": {
+      "attributes": {
+        "service.name": "cart-api",
+        "service.version": "1.1.3",
+        "host.name": "node-0000",
+        "k8s.pod.name": "cart-api-0-a155d",
+        "k8s.namespace.name": "shop-prod",
+        "cloud.region": "us-east-1",
+        "deployment.environment.name": "production"
+      }
+    },
+    "attributes": {
+      "stream": "network"
+    },
+    "metrics": {
+      "system": {
+        "network": {
+          "io": {
+            "receive": 426747302,
+            "transmit": 50808473
+          }
+        }
+      }
+    }
+  },
+  {
+    "@timestamp": "2026-10-17T15:59:30.000Z",
+    "resource": {
+      "attributes": {
+        "service.name": "notification-api",
+        "service.version": "1.18.3",
+        "host.name": "node-0152",
+        "k8s.pod.name": "notification-api-228-a869f",
+        "k8s.namespace.name": "shop-prod",
+        "cloud.region": "us-east-1",
+        "deployment.environment.name": "production"
+      }
+    },
+    "attributes": {
+      "stream": "memory"
+    },
+    "metrics": {
+      "system": {
+        "memory": {
+          "usage": 3621841744
+        }
+      }
+    }
+  },
+  {
+    "@timestamp": "2026-10-19T01:30:50.000Z",
+    "resource": {
+      "attributes": {
+        "service.name": "gateway-worker",
+        "service.version": "1.8.3",
+        "host.name": "node-0157",
+        "k8s.pod.name": "gateway-worker-22d-c8b9d",
+        "k8s.namespace.name": "batch",
+        "cloud.region": "us-west-2",
+        "deployment.environment.name": "staging"
+      }
+    },
+    "attributes": {
+      "stream": "memory"
+    },
+    "metrics": {
+      "system": {
+        "memory": {
+          "usage": 3793193272
+        }
+      }
+    }
+  }
+]

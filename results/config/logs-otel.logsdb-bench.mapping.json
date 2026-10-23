@@ -1,1 +1,181 @@
-{".ds-logs-otel.logsdb-bench-2026.10.22-000001":{"mappings":{"dynamic":"strict","_data_stream_timestamp":{"enabled":true},"properties":{"@timestamp":{"type":"date","ignore_malformed":false},"attributes":{"properties":{"app":{"properties":{"cart":{"properties":{"items":{"type":"integer"}}},"order":{"properties":{"id":{"type":"keyword"}}}}},"exception":{"properties":{"message":{"type":"match_only_text"},"type":{"type":"keyword"}}},"http":{"properties":{"request":{"properties":{"method":{"type":"keyword"}}},"response":{"properties":{"status_code":{"type":"long"}}}}},"thread":{"properties":{"name":{"type":"keyword"}}},"url":{"properties":{"path":{"type":"keyword"}}}}},"body":{"properties":{"text":{"type":"match_only_text"}}},"host":{"properties":{"name":{"type":"keyword","ignore_above":1024}}},"observed_timestamp":{"type":"date"},"resource":{"properties":{"attributes":{"properties":{"cloud":{"properties":{"region":{"type":"keyword"}}},"deployment":{"properties":{"environment":{"properties":{"name":{"type":"keyword"}}}}},"host":{"properties":{"name":{"type":"keyword"}}},"k8s":{"properties":{"namespace":{"properties":{"name":{"type":"keyword"}}},"pod":{"properties":{"name":{"type":"keyword"}}}}},"service":{"properties":{"name":{"type":"keyword"},"version":{"type":"keyword"}}}}}}},"scope":{"properties":{"name":{"type":"keyword"},"version":{"type":"keyword"}}},"severity_number":{"type":"integer"},"severity_text":{"type":"keyword"},"span_id":{"type":"keyword"},"trace_id":{"type":"keyword"}}}}}
+{
+  ".ds-logs-otel.logsdb-bench-2026.10.22-000001": {
+    "mappings": {
+      "dynamic": "strict",
+      "_data_stream_timestamp": {
+        "enabled": true
+      },
+      "properties": {
+        "@timestamp": {
+          "type": "date",
+          "ignore_malformed": false
+        },
+        "attributes": {
+          "properties": {
+            "app": {
+              "properties": {
+                "cart": {
+                  "properties": {
+                    "items": {
+                      "type": "integer"
+                    }
+                  }
+                },
+                "order": {
+                  "properties": {
+                    "id": {
+                      "type": "keyword"
+                    }
+                  }
+                }
+              }
+            },
+            "exception": {
+              "properties": {
+                "message": {
+                  "type": "match_only_text"
+                },
+                "type": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "http": {
+              "properties": {
+                "request": {
+                  "properties": {
+                    "method": {
+                      "type": "keyword"
+                    }
+                  }
+                },
+                "response": {
+                  "properties": {
+                    "status_code": {
+                      "type": "long"
+                    }
+                  }
+                }
+              }
+            },
+            "thread": {
+              "properties": {
+                "name": {
+                  "type": "keyword"
+                }
+              }
+            },
+            "url": {
+              "properties": {
+                "path": {
+                  "type": "keyword"
+                }
+              }
+            }
+          }
+        },
+        "body": {
+          "properties": {
+            "text": {
+              "type": "match_only_text"
+            }
+          }
+        },
+        "host": {
+          "properties": {
+            "name": {
+              "type": "keyword",
+              "ignore_above": 1024
+            }
+          }
+        },
+        "observed_timestamp": {
+          "type": "date"
+        },
+        "resource": {
+          "properties": {
+            "attributes": {
+              "properties": {
+                "cloud": {
+                  "properties": {
+                    "region": {
+                      "type": "keyword"
+                    }
+                  }
+                },
+                "deployment": {
+                  "properties": {
+                    "environment": {
+                      "properties": {
+                        "name": {
+                          "type": "keyword"
+                        }
+                      }
+                    }
+                  }
+                },
+                "host": {
+                  "properties": {
+                    "name": {
+                      "type": "keyword"
+                    }
+                  }
+                },
+                "k8s": {
+                  "properties": {
+                    "namespace": {
+                      "properties": {
+                        "name": {
+                          "type": "keyword"
+                        }
+                      }
+                    },
+                    "pod": {
+                      "properties": {
+                        "name": {
+                          "type": "keyword"
+                        }
+                      }
+                    }
+                  }
+                },
+                "service": {
+                  "properties": {
+                    "name": {
+                      "type": "keyword"
+                    },
+                    "version": {
+                      "type": "keyword"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "scope": {
+          "properties": {
+            "name": {
+              "type": "keyword"
+            },
+            "version": {
+              "type": "keyword"
+            }
+          }
+        },
+        "severity_number": {
+          "type": "integer"
+        },
+        "severity_text": {
+          "type": "keyword"
+        },
+        "span_id": {
+          "type": "keyword"
+        },
+        "trace_id": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}

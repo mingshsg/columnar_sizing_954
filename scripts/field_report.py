@@ -36,7 +36,7 @@ def pct(new, base):
 
 
 def load_index(ds):
-    path = os.path.join(FU, ".ds-%s-2026.10.22-000001.json" % ds)
+    path = os.path.join(FU, "%s.disk_usage.json" % ds)
     with open(path) as fh:
         body = json.load(fh)
     for k, v in body.items():

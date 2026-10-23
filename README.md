@@ -26,6 +26,8 @@ logsdb_columnar uses 33% less disk than logsdb for logs and 40% less for traces.
 
 | Document | What it contains |
 |---|---|
+| [`EVIDENCE_INDEX.md`](EVIDENCE_INDEX.md) | Index of every configuration, sizing, validation and run file, with links and JSON checks |
+| [`results/sizing_summary.json`](results/sizing_summary.json) | Readable sizing summary with human-readable sizes |
 | [`results/summary.md`](results/summary.md) | Full results: generation, validation, ingestion, storage, checks and sample documents |
 | [`results/field_size_report.md`](results/field_size_report.md) | Field-by-field disk usage, logsdb vs logsdb_columnar, with the text-field comparison |
 | [`results/config_report.md`](results/config_report.md) | Index templates, user settings, effective settings and mappings for all five data streams |
@@ -49,7 +51,10 @@ scripts/
   verify_es.py        Force-merge, settings and mapping checks, counts, field coverage,
                       round-trip comparison, store size and compression
   field_report.py     Field-by-field storage comparison (from _disk_usage output)
+  sizing_summary.py   Readable sizing summary (results/sizing_summary.json)
   config_report.py    Config reference (templates, settings, mappings)
+  format_json.py      Pretty-prints every JSON file and checks it is unchanged
+  build_evidence_index.py  Builds EVIDENCE_INDEX.md with links and JSON checks
   report.py           results/summary.md
   run_pipeline.sh     End-to-end pipeline with checkpoints
   common.py           Shared helpers (.env loading, authenticated session)

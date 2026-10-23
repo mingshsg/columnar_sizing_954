@@ -1,0 +1,163 @@
+[
+  {
+    "@timestamp": "2026-10-18T11:48:03.002Z",
+    "trace_id": "886fef75dd2e86c04f17376c0162dcd6",
+    "span_id": "8c99b596ce345609",
+    "name": "POST /api/v1/search",
+    "kind": "SPAN_KIND_SERVER",
+    "duration": 507000000,
+    "status": {
+      "code": "STATUS_CODE_UNSET"
+    },
+    "resource": {
+      "attributes": {
+        "service.name": "gateway-batch",
+        "service.version": "1.18.5",
+        "host.name": "node-0119",
+        "k8s.pod.name": "gateway-batch-45f-d127d",
+        "k8s.namespace.name": "observability",
+        "cloud.region": "ap-southeast-1",
+        "deployment.environment.name": "staging"
+      }
+    },
+    "scope": {
+      "name": "io.opentelemetry.http",
+      "version": "1.32.0"
+    },
+    "attributes": {
+      "http.request.method": "POST",
+      "http.route": "/api/v1/search",
+      "http.response.status_code": 404,
+      "server.address": "gateway-batch-api"
+    }
+  },
+  {
+    "@timestamp": "2026-10-18T11:48:03.207Z",
+    "trace_id": "886fef75dd2e86c04f17376c0162dcd6",
+    "span_id": "35f1c3978cba91d6",
+    "parent_span_id": "8c99b596ce345609",
+    "name": "GET /api/v1/search",
+    "kind": "SPAN_KIND_SERVER",
+    "duration": 84500000,
+    "status": {
+      "code": "STATUS_CODE_UNSET"
+    },
+    "resource": {
+      "attributes": {
+        "service.name": "checkout-proxy",
+        "service.version": "1.10.3",
+        "host.name": "node-0086",
+        "k8s.pod.name": "checkout-proxy-2ae-b5c53",
+        "k8s.namespace.name": "platform",
+        "cloud.region": "eu-west-1",
+        "deployment.environment.name": "staging"
+      }
+    },
+    "scope": {
+      "name": "io.opentelemetry.http",
+      "version": "1.32.0"
+    },
+    "attributes": {
+      "http.request.method": "GET",
+      "http.route": "/api/v1/search",
+      "http.response.status_code": 500,
+      "server.address": "checkout-proxy-api"
+    }
+  },
+  {
+    "@timestamp": "2026-10-18T11:48:03.221Z",
+    "trace_id": "886fef75dd2e86c04f17376c0162dcd6",
+    "span_id": "ca187ca9686d9c8c",
+    "parent_span_id": "35f1c3978cba91d6",
+    "name": "GET /api/v1/search",
+    "kind": "SPAN_KIND_INTERNAL",
+    "duration": 14083333,
+    "status": {
+      "code": "STATUS_CODE_UNSET"
+    },
+    "resource": {
+      "attributes": {
+        "service.name": "catalog-api",
+        "service.version": "1.4.6",
+        "host.name": "node-0172",
+        "k8s.pod.name": "catalog-api-304-448aa",
+        "k8s.namespace.name": "data",
+        "cloud.region": "us-east-1",
+        "deployment.environment.name": "staging"
+      }
+    },
+    "scope": {
+      "name": "io.opentelemetry.http",
+      "version": "1.32.0"
+    },
+    "attributes": {
+      "http.request.method": "GET",
+      "http.route": "/api/v1/search",
+      "http.response.status_code": 200,
+      "server.address": "catalog-api-api"
+    }
+  },
+  {
+    "@timestamp": "2026-10-18T19:43:15.107Z",
+    "trace_id": "94bf9a4feca469ebc247290d21cee555",
+    "span_id": "be5d9b1dfc6be5dc",
+    "parent_span_id": "4794a3a9460165d6",
+    "name": "PUT /api/v1/orders/134060",
+    "kind": "SPAN_KIND_INTERNAL",
+    "duration": 19280000,
+    "status": {
+      "code": "STATUS_CODE_UNSET"
+    },
+    "resource": {
+      "attributes": {
+        "service.name": "shipping-batch",
+        "service.version": "1.19.3",
+        "host.name": "node-0191",
+        "k8s.pod.name": "shipping-batch-6ff-c8cf8",
+        "k8s.namespace.name": "observability",
+        "cloud.region": "ap-southeast-1",
+        "deployment.environment.name": "staging"
+      }
+    },
+    "scope": {
+      "name": "io.opentelemetry.http",
+      "version": "1.32.0"
+    },
+    "attributes": {
+      "http.request.method": "PUT",
+      "http.route": "/api/v1/orders/134060",
+      "http.response.status_code": 404,
+      "server.address": "shipping-batch-api"
+    }
+  },
+  {
+    "@timestamp": "2026-10-19T05:08:11.376Z",
+    "trace_id": "2a9a1be450537075bdb1559440a8f76f",
+    "span_id": "2667d86a5ad81297",
+    "parent_span_id": "a284183143d55592",
+    "name": "SELECT orders",
+    "kind": "SPAN_KIND_CLIENT",
+    "duration": 11733333,
+    "status": {
+      "code": "STATUS_CODE_UNSET"
+    },
+    "resource": {
+      "attributes": {
+        "service.name": "gateway-api",
+        "service.version": "1.7.8",
+        "host.name": "node-0116",
+        "k8s.pod.name": "gateway-api-5ec-4d598",
+        "k8s.namespace.name": "data",
+        "cloud.region": "us-east-1",
+        "deployment.environment.name": "staging"
+      }
+    },
+    "scope": {
+      "name": "io.opentelemetry.jdbc",
+      "version": "1.32.0"
+    },
+    "attributes": {
+      "db.system": "postgresql"
+    }
+  }
+]

@@ -1,1 +1,47 @@
-{".ds-metrics-otel.tsds-bench-2026.10.22-000001":{"settings":{"index":{"mapping":{"source":{"mode":"synthetic"}},"routing_path":["resource.attributes.service.name","resource.attributes.host.name","resource.attributes.k8s.pod.name","resource.attributes.k8s.namespace.name","resource.attributes.cloud.region","attributes.stream"],"mode":"time_series","look_back_time":"7d","number_of_shards":"2"}},"defaults":{"index":{"sort":{"missing":["_last","_last"],"mode":["min","max"],"field":["_tsid","@timestamp"],"order":["asc","desc"]},"codec":"default"}}}}
+{
+  ".ds-metrics-otel.tsds-bench-2026.10.22-000001": {
+    "settings": {
+      "index": {
+        "mapping": {
+          "source": {
+            "mode": "synthetic"
+          }
+        },
+        "routing_path": [
+          "resource.attributes.service.name",
+          "resource.attributes.host.name",
+          "resource.attributes.k8s.pod.name",
+          "resource.attributes.k8s.namespace.name",
+          "resource.attributes.cloud.region",
+          "attributes.stream"
+        ],
+        "mode": "time_series",
+        "look_back_time": "7d",
+        "number_of_shards": "2"
+      }
+    },
+    "defaults": {
+      "index": {
+        "sort": {
+          "missing": [
+            "_last",
+            "_last"
+          ],
+          "mode": [
+            "min",
+            "max"
+          ],
+          "field": [
+            "_tsid",
+            "@timestamp"
+          ],
+          "order": [
+            "asc",
+            "desc"
+          ]
+        },
+        "codec": "default"
+      }
+    }
+  }
+}

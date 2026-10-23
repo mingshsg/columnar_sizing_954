@@ -1,1 +1,173 @@
-{"index_templates":[{"name":"bench-metrics-otel.tsds-bench","index_template":{"index_patterns":["metrics-otel.tsds-bench"],"template":{"settings":{"index":{"mode":"time_series","look_back_time":"7d","mapping":{"source":{"mode":"synthetic"}},"number_of_shards":"2","number_of_replicas":"0","routing_path":["resource.attributes.service.name","resource.attributes.host.name","resource.attributes.k8s.pod.name","resource.attributes.k8s.namespace.name","resource.attributes.cloud.region","attributes.stream"]}},"mappings":{"dynamic":"strict","properties":{"@timestamp":{"type":"date"},"resource":{"properties":{"attributes":{"properties":{"deployment.environment.name":{"type":"keyword"},"k8s.namespace.name":{"time_series_dimension":true,"type":"keyword"},"service.name":{"time_series_dimension":true,"type":"keyword"},"service.version":{"type":"keyword"},"k8s.pod.name":{"time_series_dimension":true,"type":"keyword"},"cloud.region":{"time_series_dimension":true,"type":"keyword"},"host.name":{"time_series_dimension":true,"type":"keyword"}}}}},"attributes":{"properties":{"stream":{"time_series_dimension":true,"type":"keyword"}}},"metrics":{"properties":{"system":{"properties":{"disk":{"properties":{"io":{"properties":{"read":{"time_series_metric":"counter","type":"long"}}}}},"memory":{"properties":{"usage":{"time_series_metric":"gauge","type":"long"}}},"cpu":{"properties":{"utilization":{"time_series_metric":"gauge","type":"double"}}},"network":{"properties":{"io":{"properties":{"receive":{"time_series_metric":"counter","type":"long"},"transmit":{"time_series_metric":"counter","type":"long"}}}}}}},"http":{"properties":{"server":{"properties":{"duration":{"properties":{"p95":{"time_series_metric":"gauge","type":"double"}}},"request":{"properties":{"count":{"time_series_metric":"counter","type":"long"}}}}}}}}}}}},"composed_of":[],"priority":500,"_meta":{"signal":"metrics","benchmark":"otel-es-benchmark"},"data_stream":{"hidden":false,"allow_custom_routing":false},"created_date_millis":1792673929806,"modified_date_millis":1792673929806}}]}
+{
+  "index_templates": [
+    {
+      "name": "bench-metrics-otel.tsds-bench",
+      "index_template": {
+        "index_patterns": [
+          "metrics-otel.tsds-bench"
+        ],
+        "template": {
+          "settings": {
+            "index": {
+              "mode": "time_series",
+              "look_back_time": "7d",
+              "mapping": {
+                "source": {
+                  "mode": "synthetic"
+                }
+              },
+              "number_of_shards": "2",
+              "number_of_replicas": "0",
+              "routing_path": [
+                "resource.attributes.service.name",
+                "resource.attributes.host.name",
+                "resource.attributes.k8s.pod.name",
+                "resource.attributes.k8s.namespace.name",
+                "resource.attributes.cloud.region",
+                "attributes.stream"
+              ]
+            }
+          },
+          "mappings": {
+            "dynamic": "strict",
+            "properties": {
+              "@timestamp": {
+                "type": "date"
+              },
+              "resource": {
+                "properties": {
+                  "attributes": {
+                    "properties": {
+                      "deployment.environment.name": {
+                        "type": "keyword"
+                      },
+                      "k8s.namespace.name": {
+                        "time_series_dimension": true,
+                        "type": "keyword"
+                      },
+                      "service.name": {
+                        "time_series_dimension": true,
+                        "type": "keyword"
+                      },
+                      "service.version": {
+                        "type": "keyword"
+                      },
+                      "k8s.pod.name": {
+                        "time_series_dimension": true,
+                        "type": "keyword"
+                      },
+                      "cloud.region": {
+                        "time_series_dimension": true,
+                        "type": "keyword"
+                      },
+                      "host.name": {
+                        "time_series_dimension": true,
+                        "type": "keyword"
+                      }
+                    }
+                  }
+                }
+              },
+              "attributes": {
+                "properties": {
+                  "stream": {
+                    "time_series_dimension": true,
+                    "type": "keyword"
+                  }
+                }
+              },
+              "metrics": {
+                "properties": {
+                  "system": {
+                    "properties": {
+                      "disk": {
+                        "properties": {
+                          "io": {
+                            "properties": {
+                              "read": {
+                                "time_series_metric": "counter",
+                                "type": "long"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "memory": {
+                        "properties": {
+                          "usage": {
+                            "time_series_metric": "gauge",
+                            "type": "long"
+                          }
+                        }
+                      },
+                      "cpu": {
+                        "properties": {
+                          "utilization": {
+                            "time_series_metric": "gauge",
+                            "type": "double"
+                          }
+                        }
+                      },
+                      "network": {
+                        "properties": {
+                          "io": {
+                            "properties": {
+                              "receive": {
+                                "time_series_metric": "counter",
+                                "type": "long"
+                              },
+                              "transmit": {
+                                "time_series_metric": "counter",
+                                "type": "long"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "http": {
+                    "properties": {
+                      "server": {
+                        "properties": {
+                          "duration": {
+                            "properties": {
+                              "p95": {
+                                "time_series_metric": "gauge",
+                                "type": "double"
+                              }
+                            }
+                          },
+                          "request": {
+                            "properties": {
+                              "count": {
+                                "time_series_metric": "counter",
+                                "type": "long"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "composed_of": [],
+        "priority": 500,
+        "_meta": {
+          "signal": "metrics",
+          "benchmark": "otel-es-benchmark"
+        },
+        "data_stream": {
+          "hidden": false,
+          "allow_custom_routing": false
+        },
+        "created_date_millis": 1792673929806,
+        "modified_date_millis": 1792673929806
+      }
+    }
+  ]
+}

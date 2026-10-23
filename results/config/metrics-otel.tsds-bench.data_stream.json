@@ -1,1 +1,49 @@
-{"data_streams":[{"name":"metrics-otel.tsds-bench","timestamp_field":{"name":"@timestamp"},"indices":[{"index_name":".ds-metrics-otel.tsds-bench-2026.10.22-000001","index_uuid":"8rlykzxJQayquokQ6szeww","managed_by":"Unmanaged","prefer_ilm":true,"index_mode":"time_series"}],"generation":1,"_meta":{"signal":"metrics","benchmark":"otel-es-benchmark"},"status":"GREEN","template":"bench-metrics-otel.tsds-bench","next_generation_managed_by":"Unmanaged","prefer_ilm":true,"hidden":false,"system":false,"allow_custom_routing":false,"replicated":false,"rollover_on_write":false,"index_mode":"time_series","time_series":{"temporal_ranges":[{"start":"2026-10-15T12:58:50.000Z","end":"2026-10-23T07:58:37.000Z"}]},"settings":{},"mappings":{},"failure_store":{"enabled":false,"rollover_on_write":true,"indices":[]}}]}
+{
+  "data_streams": [
+    {
+      "name": "metrics-otel.tsds-bench",
+      "timestamp_field": {
+        "name": "@timestamp"
+      },
+      "indices": [
+        {
+          "index_name": ".ds-metrics-otel.tsds-bench-2026.10.22-000001",
+          "index_uuid": "8rlykzxJQayquokQ6szeww",
+          "managed_by": "Unmanaged",
+          "prefer_ilm": true,
+          "index_mode": "time_series"
+        }
+      ],
+      "generation": 1,
+      "_meta": {
+        "signal": "metrics",
+        "benchmark": "otel-es-benchmark"
+      },
+      "status": "GREEN",
+      "template": "bench-metrics-otel.tsds-bench",
+      "next_generation_managed_by": "Unmanaged",
+      "prefer_ilm": true,
+      "hidden": false,
+      "system": false,
+      "allow_custom_routing": false,
+      "replicated": false,
+      "rollover_on_write": false,
+      "index_mode": "time_series",
+      "time_series": {
+        "temporal_ranges": [
+          {
+            "start": "2026-10-15T12:58:50.000Z",
+            "end": "2026-10-23T07:58:37.000Z"
+          }
+        ]
+      },
+      "settings": {},
+      "mappings": {},
+      "failure_store": {
+        "enabled": false,
+        "rollover_on_write": true,
+        "indices": []
+      }
+    }
+  ]
+}
