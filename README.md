@@ -22,6 +22,8 @@ Compression ratio = raw NDJSON bytes / primary store bytes, after refresh and fo
 
 logsdb_columnar uses 33% less disk than logsdb for logs and 40% less for traces. The metrics ratio comes from synthetic data and will be lower on real metrics (see caveats).
 
+> **Open item:** the metrics store in the table above (1.77 GiB, 56.41x) was recorded by the verification run on 22 Oct. It could not be reproduced on 23 Oct: the current store is 1.09 GiB (about 92x). The cause is not determined, and the headline figure has not been chosen. See `results/sizing_summary.json` (`store_reconciliation`).
+
 ## Documents and reports
 
 | Document | What it contains |

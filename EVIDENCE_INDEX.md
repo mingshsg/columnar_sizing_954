@@ -1,6 +1,6 @@
 # Evidence index: Elasticsearch 9.5.5 OTel storage benchmark
 
-Generated: 2026-10-23 10:15 UTC
+Generated: 2026-10-23 11:23 UTC
 
 Every file below was produced by the benchmark scripts or captured from the cluster. JSON files are pretty-printed and checked to parse. Start with the sizing summary, then use the configuration files to confirm what was applied.
 
@@ -60,13 +60,14 @@ Storage numbers and their breakdown.
 
 | File | What it contains | Size | JSON check |
 |---|---|---:|---|
-| [`results/sizing_summary.json`](results/sizing_summary.json) | Readable sizing summary with human-readable sizes, per-structure breakdown and per-field comparison | 39.63 KiB | valid |
+| [`results/sizing_summary.json`](results/sizing_summary.json) | Readable sizing summary with human-readable sizes, field types, per-structure breakdown, per-field comparison (logs, traces) and per-field metrics, plus the store reconciliation | 52.80 KiB | valid |
 | [`results/es_report.json`](results/es_report.json) | Verification results per data stream: counts, field coverage, round-trip, store size, compression, mapping and settings checks | 11.21 KiB | valid |
-| [`results/field_size_report.md`](results/field_size_report.md) | Field-by-field disk usage report (markdown) | 16.99 KiB | - |
+| [`results/field_size_report.md`](results/field_size_report.md) | Field-by-field disk usage report (markdown) | 23.32 KiB | - |
 | [`results/field_usage/logs-otel.logsdb-bench.disk_usage.json`](results/field_usage/logs-otel.logsdb-bench.disk_usage.json) | Raw index disk usage output from Elasticsearch (`_disk_usage`) for logs-otel.logsdb-bench | 23.00 KiB | valid |
 | [`results/field_usage/logs-otel.columnar-bench.disk_usage.json`](results/field_usage/logs-otel.columnar-bench.disk_usage.json) | Raw index disk usage output from Elasticsearch (`_disk_usage`) for logs-otel.columnar-bench | 31.60 KiB | valid |
 | [`results/field_usage/traces-otel.logsdb-bench.disk_usage.json`](results/field_usage/traces-otel.logsdb-bench.disk_usage.json) | Raw index disk usage output from Elasticsearch (`_disk_usage`) for traces-otel.logsdb-bench | 23.57 KiB | valid |
 | [`results/field_usage/traces-otel.columnar-bench.disk_usage.json`](results/field_usage/traces-otel.columnar-bench.disk_usage.json) | Raw index disk usage output from Elasticsearch (`_disk_usage`) for traces-otel.columnar-bench | 34.02 KiB | valid |
+| [`results/field_usage/metrics-otel.tsds-bench.disk_usage.json`](results/field_usage/metrics-otel.tsds-bench.disk_usage.json) | Raw index disk usage output from Elasticsearch (`_disk_usage`) for metrics-otel.tsds-bench | 15.75 KiB | valid |
 
 ## 3. Validation of the generated data
 
@@ -119,21 +120,22 @@ Real documents from the generated files. `.json` is the readable form; `.ndjson`
 
 | File | What it contains | Size | JSON check |
 |---|---|---:|---|
-| [`scripts/build_evidence_index.py`](scripts/build_evidence_index.py) | Builds this index | 8.90 KiB | - |
+| [`scripts/build_evidence_index.py`](scripts/build_evidence_index.py) | Builds this index | 9.10 KiB | - |
 | [`scripts/common.py`](scripts/common.py) | Shared helpers: .env loading and authenticated session | 715 B | - |
 | [`scripts/config_report.py`](scripts/config_report.py) | Configuration reference (markdown with embedded JSON) | 4.46 KiB | - |
-| [`scripts/field_report.py`](scripts/field_report.py) | Field-by-field storage comparison (markdown) | 6.85 KiB | - |
+| [`scripts/field_report.py`](scripts/field_report.py) | Field-by-field storage comparison (markdown) | 9.98 KiB | - |
+| [`scripts/field_types.py`](scripts/field_types.py) | Field types from the captured mappings; used by the field and sizing reports | 2.49 KiB | - |
 | [`scripts/format_json.py`](scripts/format_json.py) | Pretty-prints every JSON file and checks it is unchanged | 2.26 KiB | - |
 | [`scripts/gen_otel.py`](scripts/gen_otel.py) | Deterministic generator for logs, traces and metrics (NDJSON) | 12.30 KiB | - |
 | [`scripts/load_bulk.py`](scripts/load_bulk.py) | Bulk loader that writes the generated documents to a data stream | 4.77 KiB | - |
-| [`scripts/report.py`](scripts/report.py) | Main results report (summary.md) | 6.54 KiB | - |
+| [`scripts/report.py`](scripts/report.py) | Main results report (summary.md) | 6.92 KiB | - |
 | [`scripts/run_pipeline.sh`](scripts/run_pipeline.sh) | End-to-end pipeline with checkpoints | 3.82 KiB | - |
 | [`scripts/schema.py`](scripts/schema.py) | OTel field definitions, index mappings and data stream names | 5.00 KiB | - |
 | [`scripts/setup_es.py`](scripts/setup_es.py) | Creates index templates and data streams; verifies settings | 4.00 KiB | - |
-| [`scripts/sizing_summary.py`](scripts/sizing_summary.py) | Readable sizing summary (JSON) | 6.07 KiB | - |
+| [`scripts/sizing_summary.py`](scripts/sizing_summary.py) | Readable sizing summary (JSON) | 8.22 KiB | - |
 | [`scripts/validate_files.py`](scripts/validate_files.py) | Full-content validator: schema, formats, enums, counters | 13.36 KiB | - |
 | [`scripts/verify_es.py`](scripts/verify_es.py) | Post-load checks: counts, mappings, settings, field coverage, round-trip, store size | 12.89 KiB | - |
-| [`scripts/verify_field_report.py`](scripts/verify_field_report.py) | Independent check that every number in field_size_report.md matches the raw disk usage output | 7.37 KiB | - |
+| [`scripts/verify_field_report.py`](scripts/verify_field_report.py) | Independent check that every number in field_size_report.md matches the raw disk usage output | 11.12 KiB | - |
 
 ## Reproducing the evidence
 

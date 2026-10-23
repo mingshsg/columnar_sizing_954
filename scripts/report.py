@@ -89,6 +89,8 @@ def main():
             for p in d.get("problems", []):
                 add("  - problem: %s" % p)
         add("")
+        add("> **Metrics store note:** the metrics store recorded here (1.77 GiB, compression 56.4x) could not be reproduced on 23 Oct. The current store is 1.09 GiB, which gives about 92x. Both values are kept. See `sizing_summary.json` (`store_reconciliation`) for the comparison and the open question. The headline metrics figure needs to be chosen before publishing.")
+        add("")
         add("### Storage comparison (logs and traces, same raw data)")
         add("")
         by = {d["data_stream"]: d for d in es["data_streams"]}

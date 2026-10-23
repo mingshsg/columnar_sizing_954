@@ -10,6 +10,9 @@ import json
 import os
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import field_types as ft  # noqa: E402
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RES = os.path.join(ROOT, "results")
 FU = os.path.join(RES, "field_usage")
@@ -37,6 +40,57 @@ def disk_usage(ds):
     body = load_json(os.path.join(FU, "%s.disk_usage.json" % ds))
     index = next(v for k, v in body.items() if k != "_shards")
     return index
+
+
+def mapping(ds):
+    return ft.load_mapping(ds)
+
+
+def metrics_block(verify_bytes, raw_bytes):
+    ds = "metrics-otel.tsds-bench"
+    idx = disk_usage(ds)
+    store = structures(idx)
+    fields = []
+    for name, f in sorted(per_field(idx).items(), key=lambda kv: -kv[1]["total"]):
+        fields.append({
+            "field": name,
+            "type": ft.type_of(name, mapping(ds)),
+            "bytes": f["total"],
+            "human": human(f["total"]),
+            "inverted_index_bytes": f["inverted_index"],
+            "doc_values_bytes": f["doc_values"],
+            "stored_fields_bytes": f["stored_fields"],
+        })
+    return {
+        "data_stream": ds,
+        "single_mode_only": "TSDS has no columnar counterpart; shown for completeness",
+        "raw_bytes": raw_bytes,
+        "primary_store_bytes": store["store_size"],
+        "primary_store_human": human(store["store_size"]),
+        "compression_ratio": round(raw_bytes / store["store_size"], 3),
+        "structures": with_human(store),
+        "fields_sorted_by_size": fields,
+        "store_note": "The verification report recorded %d bytes (%s); re-measurement gives %d bytes. See store_reconciliation." % (
+            verify_bytes, human(verify_bytes), store["store_size"]),
+    }
+
+
+def store_reconciliation(by_ds):
+    rows = []
+    for ds, rec in by_ds.items():
+        current = disk_usage(ds)["store_size_in_bytes"]
+        rows.append({
+            "data_stream": ds,
+            "verification_report_bytes": rec["primary_store_bytes"],
+            "current_bytes": current,
+            "difference_bytes": current - rec["primary_store_bytes"],
+            "matches": current == rec["primary_store_bytes"],
+        })
+    return {
+        "method": "Current store size from index disk usage (store_size_in_bytes). The same values were confirmed by _stats after a flush, and for the metrics index also after a second force-merge.",
+        "rows": rows,
+        "open_question": "The metrics store recorded by verify_es.py (22 Oct) is 1,903,391,531 bytes. It cannot be reproduced: the current store is 1,166,027,740 bytes and stays the same after flush and force-merge. The cause is not determined.",
+    }
 
 
 def structures(index):
@@ -71,6 +125,7 @@ def signal_block(signal, ds_a, ds_b):
     ia, ib = disk_usage(ds_a), disk_usage(ds_b)
     sa, sb = structures(ia), structures(ib)
     saving = (1 - sb["store_size"] / sa["store_size"]) * 100
+    mapped = mapping(ds_a)
 
     fa, fb = per_field(ia), per_field(ib)
     fields = []
@@ -78,6 +133,7 @@ def signal_block(signal, ds_a, ds_b):
         ta, tb = fa.get(name, {}).get("total", 0), fb.get(name, {}).get("total", 0)
         fields.append({
             "field": name,
+            "type": ft.type_of(name, mapped),
             "logsdb_bytes": ta,
             "logsdb_human": human(ta),
             "columnar_bytes": tb,
@@ -146,12 +202,8 @@ def main():
             "logs": signal_block("logs", "logs-otel.logsdb-bench", "logs-otel.columnar-bench"),
             "traces": signal_block("traces", "traces-otel.logsdb-bench", "traces-otel.columnar-bench"),
         },
-        "metrics_tsds": {
-            "data_stream": "metrics-otel.tsds-bench",
-            "primary_store_bytes": by_ds["metrics-otel.tsds-bench"]["primary_store_bytes"],
-            "primary_store_human": human(by_ds["metrics-otel.tsds-bench"]["primary_store_bytes"]),
-            "compression_ratio": by_ds["metrics-otel.tsds-bench"]["compression_ratio"],
-        },
+        "metrics_tsds": metrics_block(by_ds["metrics-otel.tsds-bench"]["primary_store_bytes"], by_ds["metrics-otel.tsds-bench"]["raw_bytes"]),
+        "store_reconciliation": store_reconciliation(by_ds),
     }
 
     out = os.path.join(RES, "sizing_summary.json")

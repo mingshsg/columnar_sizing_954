@@ -160,6 +160,7 @@
       "fields_sorted_by_combined_size": [
         {
           "field": "trace_id",
+          "type": "keyword",
           "logsdb_bytes": 5159345156,
           "logsdb_human": "4.81 GiB",
           "columnar_bytes": 1519059592,
@@ -169,6 +170,7 @@
         },
         {
           "field": "body.text",
+          "type": "match_only_text",
           "logsdb_bytes": 1500513150,
           "logsdb_human": "1.40 GiB",
           "columnar_bytes": 2989050763,
@@ -178,6 +180,7 @@
         },
         {
           "field": "span_id",
+          "type": "keyword",
           "logsdb_bytes": 2573713809,
           "logsdb_human": "2.40 GiB",
           "columnar_bytes": 791711986,
@@ -187,6 +190,7 @@
         },
         {
           "field": "_id",
+          "type": "(metadata) document id",
           "logsdb_bytes": 765277858,
           "logsdb_human": "729.83 MiB",
           "columnar_bytes": 869680389,
@@ -196,6 +200,7 @@
         },
         {
           "field": "body.text._original",
+          "type": "(internal) original copy of match_only_text",
           "logsdb_bytes": 1490232443,
           "logsdb_human": "1.39 GiB",
           "columnar_bytes": 0,
@@ -205,6 +210,7 @@
         },
         {
           "field": "resource.attributes.k8s.pod.name",
+          "type": "keyword",
           "logsdb_bytes": 464516331,
           "logsdb_human": "443.00 MiB",
           "columnar_bytes": 978955403,
@@ -214,6 +220,7 @@
         },
         {
           "field": "attributes.app.order.id",
+          "type": "keyword",
           "logsdb_bytes": 780559822,
           "logsdb_human": "744.40 MiB",
           "columnar_bytes": 273777476,
@@ -223,6 +230,7 @@
         },
         {
           "field": "attributes.url.path",
+          "type": "keyword",
           "logsdb_bytes": 526893499,
           "logsdb_human": "502.48 MiB",
           "columnar_bytes": 406343258,
@@ -232,6 +240,7 @@
         },
         {
           "field": "observed_timestamp",
+          "type": "date",
           "logsdb_bytes": 633020982,
           "logsdb_human": "603.70 MiB",
           "columnar_bytes": 175780531,
@@ -241,6 +250,7 @@
         },
         {
           "field": "attributes.thread.name",
+          "type": "keyword",
           "logsdb_bytes": 348037824,
           "logsdb_human": "331.91 MiB",
           "columnar_bytes": 370667432,
@@ -250,6 +260,7 @@
         },
         {
           "field": "resource.attributes.host.name",
+          "type": "keyword",
           "logsdb_bytes": 348044851,
           "logsdb_human": "331.92 MiB",
           "columnar_bytes": 338051728,
@@ -259,6 +270,7 @@
         },
         {
           "field": "resource.attributes.service.name",
+          "type": "keyword",
           "logsdb_bytes": 263856137,
           "logsdb_human": "251.63 MiB",
           "columnar_bytes": 412845060,
@@ -268,6 +280,7 @@
         },
         {
           "field": "resource.attributes.service.version",
+          "type": "keyword",
           "logsdb_bytes": 261011889,
           "logsdb_human": "248.92 MiB",
           "columnar_bytes": 265821381,
@@ -277,6 +290,7 @@
         },
         {
           "field": "attributes.http.response.status_code",
+          "type": "long",
           "logsdb_bytes": 314754376,
           "logsdb_human": "300.17 MiB",
           "columnar_bytes": 177942467,
@@ -286,6 +300,7 @@
         },
         {
           "field": "resource.attributes.k8s.namespace.name",
+          "type": "keyword",
           "logsdb_bytes": 153967578,
           "logsdb_human": "146.83 MiB",
           "columnar_bytes": 237928485,
@@ -295,6 +310,7 @@
         },
         {
           "field": "resource.attributes.cloud.region",
+          "type": "keyword",
           "logsdb_bytes": 119429367,
           "logsdb_human": "113.90 MiB",
           "columnar_bytes": 248739533,
@@ -304,6 +320,7 @@
         },
         {
           "field": "scope.name",
+          "type": "keyword",
           "logsdb_bytes": 109436635,
           "logsdb_human": "104.37 MiB",
           "columnar_bytes": 246761097,
@@ -313,6 +330,7 @@
         },
         {
           "field": "attributes.http.request.method",
+          "type": "keyword",
           "logsdb_bytes": 131157776,
           "logsdb_human": "125.08 MiB",
           "columnar_bytes": 167025806,
@@ -322,6 +340,7 @@
         },
         {
           "field": "attributes.app.cart.items",
+          "type": "integer",
           "logsdb_bytes": 207526392,
           "logsdb_human": "197.91 MiB",
           "columnar_bytes": 53526247,
@@ -331,6 +350,7 @@
         },
         {
           "field": "severity_text",
+          "type": "keyword",
           "logsdb_bytes": 112197575,
           "logsdb_human": "107.00 MiB",
           "columnar_bytes": 137192309,
@@ -340,6 +360,7 @@
         },
         {
           "field": "scope.version",
+          "type": "keyword",
           "logsdb_bytes": 74969659,
           "logsdb_human": "71.50 MiB",
           "columnar_bytes": 127196971,
@@ -349,6 +370,7 @@
         },
         {
           "field": "attributes.exception.message",
+          "type": "match_only_text",
           "logsdb_bytes": 70599175,
           "logsdb_human": "67.33 MiB",
           "columnar_bytes": 115620551,
@@ -358,6 +380,7 @@
         },
         {
           "field": "resource.attributes.deployment.environment.name",
+          "type": "keyword",
           "logsdb_bytes": 47397345,
           "logsdb_human": "45.20 MiB",
           "columnar_bytes": 132758889,
@@ -367,6 +390,7 @@
         },
         {
           "field": "@timestamp",
+          "type": "date",
           "logsdb_bytes": 84694584,
           "logsdb_human": "80.77 MiB",
           "columnar_bytes": 84703631,
@@ -376,6 +400,7 @@
         },
         {
           "field": "severity_number",
+          "type": "integer",
           "logsdb_bytes": 122267306,
           "logsdb_human": "116.60 MiB",
           "columnar_bytes": 41983754,
@@ -385,6 +410,7 @@
         },
         {
           "field": "_seq_no",
+          "type": "(metadata) sequence number",
           "logsdb_bytes": 158233265,
           "logsdb_human": "150.90 MiB",
           "columnar_bytes": 0,
@@ -394,6 +420,7 @@
         },
         {
           "field": "attributes.exception.type",
+          "type": "keyword",
           "logsdb_bytes": 36776214,
           "logsdb_human": "35.07 MiB",
           "columnar_bytes": 42547035,
@@ -403,6 +430,7 @@
         },
         {
           "field": "attributes.exception.message._original",
+          "type": "(internal) original copy of match_only_text",
           "logsdb_bytes": 45017786,
           "logsdb_human": "42.93 MiB",
           "columnar_bytes": 0,
@@ -412,6 +440,7 @@
         },
         {
           "field": "attributes.http.request.method.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 22504096,
@@ -421,6 +450,7 @@
         },
         {
           "field": "attributes.url.path.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 22504096,
@@ -429,7 +459,8 @@
           "difference_human": "21.46 MiB"
         },
         {
-          "field": "span_id.counts",
+          "field": "trace_id.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 21374077,
@@ -438,7 +469,8 @@
           "difference_human": "20.38 MiB"
         },
         {
-          "field": "trace_id.counts",
+          "field": "span_id.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 21374077,
@@ -448,6 +480,7 @@
         },
         {
           "field": "attributes.app.order.id.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 20314562,
@@ -457,6 +490,7 @@
         },
         {
           "field": "attributes.exception.message.counts",
+          "type": "(internal) value counts of match_only_text",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 19537531,
@@ -466,6 +500,7 @@
         },
         {
           "field": "attributes.exception.type.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 19537531,
@@ -475,6 +510,7 @@
         },
         {
           "field": "attributes.exception.message._original.counts",
+          "type": "(internal) value counts",
           "logsdb_bytes": 19537519,
           "logsdb_human": "18.63 MiB",
           "columnar_bytes": 0,
@@ -484,6 +520,7 @@
         },
         {
           "field": "_field_names",
+          "type": "(metadata) field-name index",
           "logsdb_bytes": 16860664,
           "logsdb_human": "16.08 MiB",
           "columnar_bytes": 0,
@@ -492,97 +529,8 @@
           "difference_human": "-16.08 MiB"
         },
         {
-          "field": "attributes.thread.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "resource.attributes.k8s.namespace.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "scope.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
           "field": "resource.attributes.deployment.environment.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "body.text.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "resource.attributes.k8s.pod.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "scope.version.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "resource.attributes.service.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "resource.attributes.service.version.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "resource.attributes.cloud.region.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2330524,
-          "columnar_human": "2.22 MiB",
-          "difference_bytes": 2330524,
-          "difference_human": "2.22 MiB"
-        },
-        {
-          "field": "resource.attributes.host.name.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2330524,
@@ -592,6 +540,107 @@
         },
         {
           "field": "severity_text.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "scope.version.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.namespace.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "attributes.thread.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.service.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "scope.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.pod.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "body.text.counts",
+          "type": "(internal) value counts of match_only_text",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.service.version.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.host.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2330524,
+          "columnar_human": "2.22 MiB",
+          "difference_bytes": 2330524,
+          "difference_human": "2.22 MiB"
+        },
+        {
+          "field": "resource.attributes.cloud.region.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2330524,
@@ -601,6 +650,7 @@
         },
         {
           "field": "body.text._original.counts",
+          "type": "(internal) value counts",
           "logsdb_bytes": 2330522,
           "logsdb_human": "2.22 MiB",
           "columnar_bytes": 0,
@@ -609,16 +659,8 @@
           "difference_human": "-2.22 MiB"
         },
         {
-          "field": "_version",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 0,
-          "columnar_human": "0 B",
-          "difference_bytes": 0,
-          "difference_human": "0 B"
-        },
-        {
-          "field": "_recovery_source_size",
+          "field": "__root_doc_for_nested",
+          "type": "(metadata) nested-document root marker",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 0,
@@ -628,6 +670,7 @@
         },
         {
           "field": "_primary_term",
+          "type": "(metadata) primary term",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 0,
@@ -636,7 +679,18 @@
           "difference_human": "0 B"
         },
         {
-          "field": "__root_doc_for_nested",
+          "field": "_version",
+          "type": "(metadata) document version",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "_recovery_source_size",
+          "type": "(metadata) recovery source size",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 0,
@@ -725,6 +779,7 @@
       "fields_sorted_by_combined_size": [
         {
           "field": "span_id",
+          "type": "keyword",
           "logsdb_bytes": 4360114021,
           "logsdb_human": "4.06 GiB",
           "columnar_bytes": 1330131695,
@@ -734,6 +789,7 @@
         },
         {
           "field": "trace_id",
+          "type": "keyword",
           "logsdb_bytes": 3513426621,
           "logsdb_human": "3.27 GiB",
           "columnar_bytes": 1117478773,
@@ -743,6 +799,7 @@
         },
         {
           "field": "parent_span_id",
+          "type": "keyword",
           "logsdb_bytes": 3058131308,
           "logsdb_human": "2.85 GiB",
           "columnar_bytes": 952865071,
@@ -752,6 +809,7 @@
         },
         {
           "field": "_id",
+          "type": "(metadata) document id",
           "logsdb_bytes": 920150879,
           "logsdb_human": "877.52 MiB",
           "columnar_bytes": 1010508992,
@@ -761,6 +819,7 @@
         },
         {
           "field": "duration",
+          "type": "long",
           "logsdb_bytes": 1216153533,
           "logsdb_human": "1.13 GiB",
           "columnar_bytes": 620049888,
@@ -770,6 +829,7 @@
         },
         {
           "field": "resource.attributes.k8s.pod.name",
+          "type": "keyword",
           "logsdb_bytes": 479917360,
           "logsdb_human": "457.68 MiB",
           "columnar_bytes": 1012175950,
@@ -779,6 +839,7 @@
         },
         {
           "field": "name",
+          "type": "keyword",
           "logsdb_bytes": 656874497,
           "logsdb_human": "626.44 MiB",
           "columnar_bytes": 571095530,
@@ -788,6 +849,7 @@
         },
         {
           "field": "attributes.http.route",
+          "type": "keyword",
           "logsdb_bytes": 434576572,
           "logsdb_human": "414.44 MiB",
           "columnar_bytes": 316843850,
@@ -797,6 +859,7 @@
         },
         {
           "field": "resource.attributes.host.name",
+          "type": "keyword",
           "logsdb_bytes": 359600452,
           "logsdb_human": "342.94 MiB",
           "columnar_bytes": 349270885,
@@ -806,6 +869,7 @@
         },
         {
           "field": "resource.attributes.service.name",
+          "type": "keyword",
           "logsdb_bytes": 272624292,
           "logsdb_human": "259.99 MiB",
           "columnar_bytes": 426566517,
@@ -815,6 +879,7 @@
         },
         {
           "field": "attributes.server.address",
+          "type": "keyword",
           "logsdb_bytes": 231775513,
           "logsdb_human": "221.04 MiB",
           "columnar_bytes": 373387125,
@@ -824,6 +889,7 @@
         },
         {
           "field": "resource.attributes.service.version",
+          "type": "keyword",
           "logsdb_bytes": 266380892,
           "logsdb_human": "254.04 MiB",
           "columnar_bytes": 270432206,
@@ -833,6 +899,7 @@
         },
         {
           "field": "resource.attributes.k8s.namespace.name",
+          "type": "keyword",
           "logsdb_bytes": 159083690,
           "logsdb_human": "151.71 MiB",
           "columnar_bytes": 245839156,
@@ -842,6 +909,7 @@
         },
         {
           "field": "attributes.http.response.status_code",
+          "type": "long",
           "logsdb_bytes": 235970969,
           "logsdb_human": "225.04 MiB",
           "columnar_bytes": 153557139,
@@ -851,6 +919,7 @@
         },
         {
           "field": "resource.attributes.cloud.region",
+          "type": "keyword",
           "logsdb_bytes": 123394097,
           "logsdb_human": "117.68 MiB",
           "columnar_bytes": 257004097,
@@ -860,6 +929,7 @@
         },
         {
           "field": "kind",
+          "type": "keyword",
           "logsdb_bytes": 107835076,
           "logsdb_human": "102.84 MiB",
           "columnar_bytes": 217142707,
@@ -869,6 +939,7 @@
         },
         {
           "field": "attributes.http.request.method",
+          "type": "keyword",
           "logsdb_bytes": 119902295,
           "logsdb_human": "114.35 MiB",
           "columnar_bytes": 144364475,
@@ -878,6 +949,7 @@
         },
         {
           "field": "scope.name",
+          "type": "keyword",
           "logsdb_bytes": 75563417,
           "logsdb_human": "72.06 MiB",
           "columnar_bytes": 167812652,
@@ -887,6 +959,7 @@
         },
         {
           "field": "status.code",
+          "type": "keyword",
           "logsdb_bytes": 64418338,
           "logsdb_human": "61.43 MiB",
           "columnar_bytes": 154089328,
@@ -896,6 +969,7 @@
         },
         {
           "field": "_seq_no",
+          "type": "(metadata) sequence number",
           "logsdb_bytes": 201204780,
           "logsdb_human": "191.88 MiB",
           "columnar_bytes": 0,
@@ -905,6 +979,7 @@
         },
         {
           "field": "resource.attributes.deployment.environment.name",
+          "type": "keyword",
           "logsdb_bytes": 48976245,
           "logsdb_human": "46.71 MiB",
           "columnar_bytes": 137187729,
@@ -914,6 +989,7 @@
         },
         {
           "field": "@timestamp",
+          "type": "date",
           "logsdb_bytes": 71752112,
           "logsdb_human": "68.43 MiB",
           "columnar_bytes": 71759166,
@@ -923,6 +999,7 @@
         },
         {
           "field": "attributes.exception.message",
+          "type": "match_only_text",
           "logsdb_bytes": 33538907,
           "logsdb_human": "31.99 MiB",
           "columnar_bytes": 53862079,
@@ -932,6 +1009,7 @@
         },
         {
           "field": "status.message",
+          "type": "match_only_text",
           "logsdb_bytes": 33528803,
           "logsdb_human": "31.98 MiB",
           "columnar_bytes": 53851357,
@@ -941,6 +1019,7 @@
         },
         {
           "field": "attributes.db.system",
+          "type": "keyword",
           "logsdb_bytes": 36080722,
           "logsdb_human": "34.41 MiB",
           "columnar_bytes": 39353151,
@@ -950,6 +1029,7 @@
         },
         {
           "field": "scope.version",
+          "type": "keyword",
           "logsdb_bytes": 7463289,
           "logsdb_human": "7.12 MiB",
           "columnar_bytes": 58444278,
@@ -959,6 +1039,7 @@
         },
         {
           "field": "attributes.exception.type",
+          "type": "keyword",
           "logsdb_bytes": 17817492,
           "logsdb_human": "16.99 MiB",
           "columnar_bytes": 19315996,
@@ -968,6 +1049,7 @@
         },
         {
           "field": "parent_span_id.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 22938724,
@@ -976,7 +1058,18 @@
           "difference_human": "21.88 MiB"
         },
         {
+          "field": "attributes.http.route.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 22634643,
+          "columnar_human": "21.59 MiB",
+          "difference_bytes": 22634643,
+          "difference_human": "21.59 MiB"
+        },
+        {
           "field": "attributes.http.request.method.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 22634643,
@@ -986,15 +1079,7 @@
         },
         {
           "field": "attributes.server.address.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 22634643,
-          "columnar_human": "21.59 MiB",
-          "difference_bytes": 22634643,
-          "difference_human": "21.59 MiB"
-        },
-        {
-          "field": "attributes.http.route.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 22634643,
@@ -1004,6 +1089,7 @@
         },
         {
           "field": "attributes.db.system.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 20810044,
@@ -1013,6 +1099,7 @@
         },
         {
           "field": "attributes.exception.message._original",
+          "type": "(internal) original copy of match_only_text",
           "logsdb_bytes": 20326448,
           "logsdb_human": "19.38 MiB",
           "columnar_bytes": 0,
@@ -1022,6 +1109,7 @@
         },
         {
           "field": "status.message._original",
+          "type": "(internal) original copy of match_only_text",
           "logsdb_bytes": 20325708,
           "logsdb_human": "19.38 MiB",
           "columnar_bytes": 0,
@@ -1030,7 +1118,8 @@
           "difference_human": "-19.38 MiB"
         },
         {
-          "field": "attributes.exception.message.counts",
+          "field": "status.message.counts",
+          "type": "(internal) value counts of match_only_text",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 9904493,
@@ -1039,7 +1128,8 @@
           "difference_human": "9.45 MiB"
         },
         {
-          "field": "status.message.counts",
+          "field": "attributes.exception.message.counts",
+          "type": "(internal) value counts of match_only_text",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 9904493,
@@ -1049,6 +1139,7 @@
         },
         {
           "field": "attributes.exception.type.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 9904493,
@@ -1058,6 +1149,7 @@
         },
         {
           "field": "attributes.exception.message._original.counts",
+          "type": "(internal) value counts",
           "logsdb_bytes": 9904464,
           "logsdb_human": "9.45 MiB",
           "columnar_bytes": 0,
@@ -1067,6 +1159,7 @@
         },
         {
           "field": "status.message._original.counts",
+          "type": "(internal) value counts",
           "logsdb_bytes": 9904464,
           "logsdb_human": "9.45 MiB",
           "columnar_bytes": 0,
@@ -1076,6 +1169,7 @@
         },
         {
           "field": "_field_names",
+          "type": "(metadata) field-name index",
           "logsdb_bytes": 9104355,
           "logsdb_human": "8.68 MiB",
           "columnar_bytes": 0,
@@ -1084,70 +1178,8 @@
           "difference_human": "-8.68 MiB"
         },
         {
-          "field": "span_id.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
-          "field": "name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
-          "field": "kind.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
-          "field": "resource.attributes.k8s.namespace.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
-          "field": "scope.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
-          "field": "status.code.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
           "field": "resource.attributes.deployment.environment.name.counts",
-          "logsdb_bytes": 0,
-          "logsdb_human": "0 B",
-          "columnar_bytes": 2407904,
-          "columnar_human": "2.30 MiB",
-          "difference_bytes": 2407904,
-          "difference_human": "2.30 MiB"
-        },
-        {
-          "field": "resource.attributes.k8s.pod.name.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1157,6 +1189,37 @@
         },
         {
           "field": "scope.version.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.namespace.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "kind.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "name.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1166,6 +1229,7 @@
         },
         {
           "field": "resource.attributes.service.name.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1174,7 +1238,18 @@
           "difference_human": "2.30 MiB"
         },
         {
-          "field": "trace_id.counts",
+          "field": "scope.name.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.k8s.pod.name.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1184,6 +1259,7 @@
         },
         {
           "field": "resource.attributes.service.version.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1192,7 +1268,8 @@
           "difference_human": "2.30 MiB"
         },
         {
-          "field": "resource.attributes.cloud.region.counts",
+          "field": "status.code.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1202,6 +1279,7 @@
         },
         {
           "field": "resource.attributes.host.name.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 2407904,
@@ -1210,16 +1288,38 @@
           "difference_human": "2.30 MiB"
         },
         {
-          "field": "_version",
+          "field": "trace_id.counts",
+          "type": "(internal) value counts of keyword",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
-          "columnar_bytes": 0,
-          "columnar_human": "0 B",
-          "difference_bytes": 0,
-          "difference_human": "0 B"
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
         },
         {
-          "field": "_recovery_source_size",
+          "field": "span_id.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "resource.attributes.cloud.region.counts",
+          "type": "(internal) value counts of keyword",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 2407904,
+          "columnar_human": "2.30 MiB",
+          "difference_bytes": 2407904,
+          "difference_human": "2.30 MiB"
+        },
+        {
+          "field": "__root_doc_for_nested",
+          "type": "(metadata) nested-document root marker",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 0,
@@ -1229,6 +1329,7 @@
         },
         {
           "field": "_primary_term",
+          "type": "(metadata) primary term",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 0,
@@ -1237,7 +1338,18 @@
           "difference_human": "0 B"
         },
         {
-          "field": "__root_doc_for_nested",
+          "field": "_version",
+          "type": "(metadata) document version",
+          "logsdb_bytes": 0,
+          "logsdb_human": "0 B",
+          "columnar_bytes": 0,
+          "columnar_human": "0 B",
+          "difference_bytes": 0,
+          "difference_human": "0 B"
+        },
+        {
+          "field": "_recovery_source_size",
+          "type": "(metadata) recovery source size",
           "logsdb_bytes": 0,
           "logsdb_human": "0 B",
           "columnar_bytes": 0,
@@ -1250,8 +1362,296 @@
   },
   "metrics_tsds": {
     "data_stream": "metrics-otel.tsds-bench",
-    "primary_store_bytes": 1903391531,
-    "primary_store_human": "1.77 GiB",
-    "compression_ratio": 56.413
+    "single_mode_only": "TSDS has no columnar counterpart; shown for completeness",
+    "raw_bytes": 107375888603,
+    "primary_store_bytes": 1166027740,
+    "primary_store_human": "1.09 GiB",
+    "compression_ratio": 92.087,
+    "structures": {
+      "store_size": {
+        "bytes": 1166027740,
+        "human": "1.09 GiB"
+      },
+      "all_fields_total": {
+        "bytes": 1161748765,
+        "human": "1.08 GiB"
+      },
+      "inverted_index": {
+        "bytes": 0,
+        "human": "0 B"
+      },
+      "doc_values": {
+        "bytes": 1144971549,
+        "human": "1.07 GiB"
+      },
+      "stored_fields": {
+        "bytes": 0,
+        "human": "0 B"
+      },
+      "points": {
+        "bytes": 0,
+        "human": "0 B"
+      }
+    },
+    "fields_sorted_by_size": [
+      {
+        "field": "metrics.system.cpu.utilization",
+        "type": "double (gauge)",
+        "bytes": 345664645,
+        "human": "329.65 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 345664645,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "metrics.system.memory.usage",
+        "type": "long (gauge)",
+        "bytes": 220177550,
+        "human": "209.98 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 220177550,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "metrics.http.server.duration.p95",
+        "type": "double (gauge)",
+        "bytes": 190726582,
+        "human": "181.89 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 190726582,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "metrics.system.disk.io.read",
+        "type": "long (counter)",
+        "bytes": 91863888,
+        "human": "87.61 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 91863888,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "metrics.http.server.request.count",
+        "type": "long (counter)",
+        "bytes": 91848024,
+        "human": "87.59 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 91848024,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "metrics.system.network.io.receive",
+        "type": "long (counter)",
+        "bytes": 91834680,
+        "human": "87.58 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 91834680,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "metrics.system.network.io.transmit",
+        "type": "long (counter)",
+        "bytes": 91827643,
+        "human": "87.57 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 91827643,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_id",
+        "type": "(metadata) document id",
+        "bytes": 16777216,
+        "human": "16.00 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 0,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "@timestamp",
+        "type": "date",
+        "bytes": 8721952,
+        "human": "8.32 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 8721952,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.k8s.pod.name",
+        "type": "keyword (dimension)",
+        "bytes": 2243110,
+        "human": "2.14 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 2243110,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.host.name",
+        "type": "keyword (dimension)",
+        "bytes": 1776260,
+        "human": "1.69 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 1776260,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_ts_routing_hash",
+        "type": "(metadata) TSDS routing hash",
+        "bytes": 1745141,
+        "human": "1.66 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 1745141,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.deployment.environment.name",
+        "type": "keyword",
+        "bytes": 1327291,
+        "human": "1.27 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 1327291,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.k8s.namespace.name",
+        "type": "keyword (dimension)",
+        "bytes": 1254755,
+        "human": "1.20 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 1254755,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.service.name",
+        "type": "keyword (dimension)",
+        "bytes": 1133902,
+        "human": "1.08 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 1133902,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.service.version",
+        "type": "keyword",
+        "bytes": 1133699,
+        "human": "1.08 MiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 1133699,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_tsid",
+        "type": "(metadata) TSDS time series id",
+        "bytes": 619186,
+        "human": "604.67 KiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 619186,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "resource.attributes.cloud.region",
+        "type": "keyword (dimension)",
+        "bytes": 537160,
+        "human": "524.57 KiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 537160,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "attributes.stream",
+        "type": "keyword (dimension)",
+        "bytes": 536081,
+        "human": "523.52 KiB",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 536081,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "__root_doc_for_nested",
+        "type": "(metadata) nested-document root marker",
+        "bytes": 0,
+        "human": "0 B",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 0,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_primary_term",
+        "type": "(metadata) primary term",
+        "bytes": 0,
+        "human": "0 B",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 0,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_recovery_source_size",
+        "type": "(metadata) recovery source size",
+        "bytes": 0,
+        "human": "0 B",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 0,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_seq_no",
+        "type": "(metadata) sequence number",
+        "bytes": 0,
+        "human": "0 B",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 0,
+        "stored_fields_bytes": 0
+      },
+      {
+        "field": "_version",
+        "type": "(metadata) document version",
+        "bytes": 0,
+        "human": "0 B",
+        "inverted_index_bytes": 0,
+        "doc_values_bytes": 0,
+        "stored_fields_bytes": 0
+      }
+    ],
+    "store_note": "The verification report recorded 1903391531 bytes (1.77 GiB); re-measurement gives 1166027740 bytes. See store_reconciliation."
+  },
+  "store_reconciliation": {
+    "method": "Current store size from index disk usage (store_size_in_bytes). The same values were confirmed by _stats after a flush, and for the metrics index also after a second force-merge.",
+    "rows": [
+      {
+        "data_stream": "logs-otel.logsdb-bench",
+        "verification_report_bytes": 17028159116,
+        "current_bytes": 17028159116,
+        "difference_bytes": 0,
+        "matches": true
+      },
+      {
+        "data_stream": "logs-otel.columnar-bench",
+        "verification_report_bytes": 11398138106,
+        "current_bytes": 11398138106,
+        "difference_bytes": 0,
+        "matches": true
+      },
+      {
+        "data_stream": "traces-otel.logsdb-bench",
+        "verification_report_bytes": 17282974865,
+        "current_bytes": 17282974865,
+        "difference_bytes": 0,
+        "matches": true
+      },
+      {
+        "data_stream": "traces-otel.columnar-bench",
+        "verification_report_bytes": 10300987616,
+        "current_bytes": 10300987616,
+        "difference_bytes": 0,
+        "matches": true
+      },
+      {
+        "data_stream": "metrics-otel.tsds-bench",
+        "verification_report_bytes": 1903391531,
+        "current_bytes": 1166027740,
+        "difference_bytes": -737363791,
+        "matches": false
+      }
+    ],
+    "open_question": "The metrics store recorded by verify_es.py (22 Oct) is 1,903,391,531 bytes. It cannot be reproduced: the current store is 1,166,027,740 bytes and stays the same after flush and force-merge. The cause is not determined."
   }
 }

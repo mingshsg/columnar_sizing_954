@@ -105,12 +105,12 @@ def main():
     lines += section("1a. Configuration files", "", rows)
 
     lines += section("2. Sizing", "Storage numbers and their breakdown.", [
-        row("results/sizing_summary.json", "Readable sizing summary with human-readable sizes, per-structure breakdown and per-field comparison"),
+        row("results/sizing_summary.json", "Readable sizing summary with human-readable sizes, field types, per-structure breakdown, per-field comparison (logs, traces) and per-field metrics, plus the store reconciliation"),
         row("results/es_report.json", "Verification results per data stream: counts, field coverage, round-trip, store size, compression, mapping and settings checks"),
         row("results/field_size_report.md", "Field-by-field disk usage report (markdown)"),
     ] + [
         row("results/field_usage/%s.disk_usage.json" % ds, "Raw index disk usage output from Elasticsearch (`_disk_usage`) for %s" % ds)
-        for ds in ("logs-otel.logsdb-bench", "logs-otel.columnar-bench", "traces-otel.logsdb-bench", "traces-otel.columnar-bench")
+        for ds in ("logs-otel.logsdb-bench", "logs-otel.columnar-bench", "traces-otel.logsdb-bench", "traces-otel.columnar-bench", "metrics-otel.tsds-bench")
     ])
 
     lines += section("3. Validation of the generated data", "Full-content checks on every generated document. Pass/fail is in each file.", [
@@ -170,6 +170,7 @@ SCRIPT_DESC = {
     "load_bulk.py": "Bulk loader that writes the generated documents to a data stream",
     "verify_es.py": "Post-load checks: counts, mappings, settings, field coverage, round-trip, store size",
     "field_report.py": "Field-by-field storage comparison (markdown)",
+    "field_types.py": "Field types from the captured mappings; used by the field and sizing reports",
     "verify_field_report.py": "Independent check that every number in field_size_report.md matches the raw disk usage output",
     "sizing_summary.py": "Readable sizing summary (JSON)",
     "config_report.py": "Configuration reference (markdown with embedded JSON)",

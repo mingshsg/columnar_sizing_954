@@ -1,6 +1,6 @@
 # OpenTelemetry compression benchmark: Elasticsearch 9.5.5
 
-Generated: 2026-10-23 10:02:36 UTC
+Generated: 2026-10-23 11:23:48 UTC
 
 ## Cluster
 
@@ -53,6 +53,8 @@ Compression ratio = raw NDJSON bytes / primary store bytes.
 - **traces-otel.logsdb-bench**: PASS (mode logsdb, 154,100,082 docs)
 - **traces-otel.columnar-bench**: PASS (mode logsdb_columnar, 154,100,082 docs)
 - **metrics-otel.tsds-bench**: PASS (mode time_series, 274,280,000 docs)
+
+> **Metrics store note:** the metrics store recorded here (1.77 GiB, compression 56.4x) could not be reproduced on 23 Oct. The current store is 1.09 GiB, which gives about 92x. Both values are kept. See `sizing_summary.json` (`store_reconciliation`) for the comparison and the open question. The headline metrics figure needs to be chosen before publishing.
 
 ### Storage comparison (logs and traces, same raw data)
 
