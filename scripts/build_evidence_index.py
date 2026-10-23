@@ -170,6 +170,7 @@ SCRIPT_DESC = {
     "load_bulk.py": "Bulk loader that writes the generated documents to a data stream",
     "verify_es.py": "Post-load checks: counts, mappings, settings, field coverage, round-trip, store size",
     "field_report.py": "Field-by-field storage comparison (markdown)",
+    "verify_field_report.py": "Independent check that every number in field_size_report.md matches the raw disk usage output",
     "sizing_summary.py": "Readable sizing summary (JSON)",
     "config_report.py": "Configuration reference (markdown with embedded JSON)",
     "report.py": "Main results report (summary.md)",

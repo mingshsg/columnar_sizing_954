@@ -1,6 +1,6 @@
 # Evidence index: Elasticsearch 9.5.5 OTel storage benchmark
 
-Generated: 2026-10-23 10:11 UTC
+Generated: 2026-10-23 10:15 UTC
 
 Every file below was produced by the benchmark scripts or captured from the cluster. JSON files are pretty-printed and checked to parse. Start with the sizing summary, then use the configuration files to confirm what was applied.
 
@@ -119,7 +119,7 @@ Real documents from the generated files. `.json` is the readable form; `.ndjson`
 
 | File | What it contains | Size | JSON check |
 |---|---|---:|---|
-| [`scripts/build_evidence_index.py`](scripts/build_evidence_index.py) | Builds this index | 8.77 KiB | - |
+| [`scripts/build_evidence_index.py`](scripts/build_evidence_index.py) | Builds this index | 8.90 KiB | - |
 | [`scripts/common.py`](scripts/common.py) | Shared helpers: .env loading and authenticated session | 715 B | - |
 | [`scripts/config_report.py`](scripts/config_report.py) | Configuration reference (markdown with embedded JSON) | 4.46 KiB | - |
 | [`scripts/field_report.py`](scripts/field_report.py) | Field-by-field storage comparison (markdown) | 6.85 KiB | - |
@@ -133,6 +133,7 @@ Real documents from the generated files. `.json` is the readable form; `.ndjson`
 | [`scripts/sizing_summary.py`](scripts/sizing_summary.py) | Readable sizing summary (JSON) | 6.07 KiB | - |
 | [`scripts/validate_files.py`](scripts/validate_files.py) | Full-content validator: schema, formats, enums, counters | 13.36 KiB | - |
 | [`scripts/verify_es.py`](scripts/verify_es.py) | Post-load checks: counts, mappings, settings, field coverage, round-trip, store size | 12.89 KiB | - |
+| [`scripts/verify_field_report.py`](scripts/verify_field_report.py) | Independent check that every number in field_size_report.md matches the raw disk usage output | 7.37 KiB | - |
 
 ## Reproducing the evidence
 

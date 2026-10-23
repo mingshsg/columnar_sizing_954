@@ -51,6 +51,7 @@ scripts/
   verify_es.py        Force-merge, settings and mapping checks, counts, field coverage,
                       round-trip comparison, store size and compression
   field_report.py     Field-by-field storage comparison (from _disk_usage output)
+  verify_field_report.py  Independent check of field_size_report.md against the raw disk usage JSON
   sizing_summary.py   Readable sizing summary (results/sizing_summary.json)
   config_report.py    Config reference (templates, settings, mappings)
   format_json.py      Pretty-prints every JSON file and checks it is unchanged
